@@ -1,0 +1,7 @@
+<div>
+    <h1>Total: $1500</h1>
+    <button mat-raised-button color="primary" routerLink="/add-cost">Add Cost</button>
+    <div *ngFor="let cost of costs">
+      <app-cost-card [cost]="cost"></app-cost-card>
+    </div>
+  </div>
