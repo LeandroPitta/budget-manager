@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(to bottom right, #F8C3DF, #90CAF9);
+}
+
+body {
+    margin: 0;
+}

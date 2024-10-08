@@ -3,6 +3,7 @@ package com.leandropitta.cost_management.controller;
 import com.leandropitta.cost_management.dto.request.CostRequestDto;
 import com.leandropitta.cost_management.dto.response.CostResponseDto;
 import com.leandropitta.cost_management.dto.response.CostsResponseDto;
+import com.leandropitta.cost_management.dto.response.GiftResponseDto;
 import com.leandropitta.cost_management.service.CostService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,11 @@ public class CostController {
     @GetMapping
     public CostsResponseDto getCosts() {
         return costService.getCosts();
+    }
+
+    @GetMapping("/gift")
+    public GiftResponseDto calculateGift() {
+        return costService.calculateGift();
     }
 
     @PostMapping

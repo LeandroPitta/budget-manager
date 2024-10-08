@@ -14,6 +14,10 @@ export class CostService {
   getCosts(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+  
+  getGiftData(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/gift`);
+  }
 
   getCost(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);

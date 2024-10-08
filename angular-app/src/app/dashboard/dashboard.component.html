@@ -1,7 +1,10 @@
-<div>
-    <h1>Total: $1500</h1>
-    <button mat-raised-button color="primary" routerLink="/add-cost">Add Cost</button>
-    <div *ngFor="let cost of costs">
-      <app-cost-card [cost]="cost"></app-cost-card>
-    </div>
+<div class="container">
+  <h1>Lívia's 15th birthday</h1>
+  <h2>Gift: {{ giftData.gift | currency }}</h2>
+  <h2>Spent: {{ giftData.spent | currency }}</h2>
+  <h2>Available: {{ giftData.available | currency }}</h2>
+  <button mat-raised-button color="primary" routerLink="/add-cost">Add Cost</button>
+  <div class="costs-container">
+    <app-cost-card *ngFor="let cost of costs" [cost]="cost"></app-cost-card>
   </div>
+</div>
