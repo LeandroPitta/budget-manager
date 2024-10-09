@@ -45,7 +45,7 @@ public class CostService {
                 .spent(totalCost)
                 .available(available)
                 .build();
-    }
+    }   
 
     public CostResponseDto createCost(CostRequestDto costRequestDto) {
         Cost cost = modelMapper.map(costRequestDto, Cost.class);

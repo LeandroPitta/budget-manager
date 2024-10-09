@@ -1,9 +1,17 @@
 <div class="container">
   <h1>Lívia's 15th birthday</h1>
-  <h2>Gift: {{ giftData.gift | currency }}</h2>
-  <h2>Spent: {{ giftData.spent | currency }}</h2>
-  <h2>Available: {{ giftData.available | currency }}</h2>
-  <button mat-raised-button color="primary" routerLink="/add-cost">Add Cost</button>
+  <div class="gift-container">
+    <h2>Gift: {{ giftData.gift | currency }}</h2>
+    <div class="expense">
+      <h3 class="spent">Spent: <span>{{ giftData.spent | currency }}</span></h3>
+      <h3 class="available">Available: <span>{{ giftData.available | currency }}</span></h3>
+    </div>
+  </div>
+  <div class="add-icon-container">
+    <a mat-icon-button color="primary" routerLink="/add-cost" class="add-icon">
+      <mat-icon>add_circle</mat-icon>
+    </a>
+  </div>  
   <div class="costs-container">
     <app-cost-card *ngFor="let cost of costs" [cost]="cost"></app-cost-card>
   </div>
