@@ -1,1 +1,10 @@
-<p>cost-form works!</p>
+<mat-card>
+    <mat-card-content>
+        <p><span>Buy:</span> <textarea [(ngModel)]="cost.buy" rows="1" maxlength="80"></textarea></p>
+        <p><span>Cost:</span> <input type="text" [(ngModel)]="cost.cost" currencyMask [options]="{ prefix: '$', thousands: ',', decimal: '.', precision: 2 }" /></p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button class="save-button" (click)="onSave()"><span>Save</span></button>
+        <button mat-button class="cancel-button" (click)="onCancel()"><span>Cancel</span></button>
+    </mat-card-actions>
+</mat-card>

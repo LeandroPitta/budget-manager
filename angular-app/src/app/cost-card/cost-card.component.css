@@ -1,4 +1,27 @@
+:host * {
+  margin: 0;
+  font-family: 'Pacifico', cursive;
+}
+
 mat-card {
-    width: 300px;
-    margin: 2px;
-  }
+  width: 300px;
+  border-radius: 15px; 
+  background: rgba(255, 255, 255, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+span {
+  font-weight: bold;
+}
+
+.buy {
+  display: flex;  
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.date-cost {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}

@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: linear-gradient(to bottom right, #F8C3DF, #90CAF9);
+    background: linear-gradient(to bottom right, rgb(243, 178, 243), #90CAF9);
 }
 
 body {

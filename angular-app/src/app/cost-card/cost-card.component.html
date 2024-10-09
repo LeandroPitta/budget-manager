@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-card-title>{{ cost.buy }}</mat-card-title>
-  <mat-card-content>
-    <p>Date: {{ cost.date | date: 'short' }}</p>
-    <p>Cost: {{ cost.cost | currency }}</p>
+  <mat-card-content class="buy"><p><span>Buy:</span> {{ cost.buy }}</p></mat-card-content>
+  <mat-card-content class="date-cost">
+    <p><span>Date:</span> {{ cost.date | date: 'short' }}</p>
+    <p><span>Cost:</span> {{ cost.cost | currency }}</p>
   </mat-card-content>
   <!-- <mat-card-actions>
     <button mat-button (click)="editCost(cost.id)">Edit</button>

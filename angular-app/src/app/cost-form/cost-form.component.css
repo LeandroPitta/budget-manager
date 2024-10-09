@@ -1,0 +1,64 @@
+:host * {
+    margin: 0;
+    font-family: 'Pacifico', cursive;
+}
+
+mat-card {
+    width: 300px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+span {
+    font-weight: bold;
+}
+
+mat-card-content p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+mat-card-content textarea {
+    width: 100%;
+    resize: vertical;
+    font-size: 14px;
+    margin-left: 8px;    
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+mat-card-content input {
+    font-size: 14px;
+    margin-left: 8px;
+    text-align: left !important;
+    margin-right: 34px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 24%;
+    padding-right: 24%;
+}
+
+.save-button,
+.cancel-button {
+    margin: 0 auto;
+}
+
+.save-button span {
+    font-weight: normal;
+    color: blue;
+}
+
+.cancel-button span {
+    font-weight: normal;
+    color: red;
+}

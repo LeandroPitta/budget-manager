@@ -8,11 +8,12 @@
     </div>
   </div>
   <div class="add-icon-container">
-    <a mat-icon-button color="primary" routerLink="/add-cost" class="add-icon">
+    <a mat-icon-button color="primary" (click)="toggleCostForm()" class="add-icon">
       <mat-icon>add_circle</mat-icon>
     </a>
   </div>  
   <div class="costs-container">
-    <app-cost-card *ngFor="let cost of costs" [cost]="cost"></app-cost-card>
+    <app-cost-form *ngIf="showCostForm" [available]="giftData.available" (save)="addCost($event)" (cancel)="cancelCostForm()"></app-cost-form>
+    <app-cost-card *ngFor="let cost of costs" [cost]="cost"></app-cost-card>    
   </div>
 </div>
