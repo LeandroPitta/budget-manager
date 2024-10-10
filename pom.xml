@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.leandropitta</groupId>
 	<artifactId>cost-management</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<packaging>war</packaging>
 	<name>cost-management</name>
 	<description>Cost Management</description>
