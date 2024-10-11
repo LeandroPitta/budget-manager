@@ -70,3 +70,20 @@ h3 span {
   color: blueviolet;
   opacity: 0.2;
 }
+
+.gift-icon {
+  width: 80px; /* Ajuste o tamanho conforme necessário */
+  height: 80px; /* Ajuste o tamanho conforme necessário */
+  vertical-align: middle;
+  margin-top: -50px;
+}
+
+.ballon-icon {
+  position: absolute;
+  top: 13%;
+  left: 74%;
+  width: 150px; /* Ajuste o tamanho conforme necessário */
+  height: 150px; /* Ajuste o tamanho conforme necessário */
+  opacity: 0.5; /* Ajuste a opacidade conforme necessário */
+  transform: translate(-50%, -50%);
+}
