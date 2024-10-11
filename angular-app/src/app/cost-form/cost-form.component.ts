@@ -17,22 +17,20 @@ export class CostFormComponent {
   constructor(private costService: CostService, private snackBar: MatSnackBar) { }
 
   onSave(): void {
-    // Validation for the Buy field
     if (this.cost.buy.length < 3) {
       this.errorMessage = 'Buy must be at least 3 characters long.';
       this.snackBar.open(this.errorMessage, 'Close', {
         duration: 3000,
-        verticalPosition: 'top', // Set position to top
+        verticalPosition: 'top', 
       });
       return;
     }
 
-    // Validation for the Cost field
     if (this.cost.cost < 0.01 || this.cost.cost > this.available) {
       this.errorMessage = `Cost must be between $0.01 and $${this.available}.`;
       this.snackBar.open(this.errorMessage, 'Close', {
         duration: 3000,
-        verticalPosition: 'top', // Set position to top
+        verticalPosition: 'top', 
       });
       return;
     }

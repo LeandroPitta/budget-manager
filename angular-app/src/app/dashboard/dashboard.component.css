@@ -72,8 +72,8 @@ h3 span {
 }
 
 .gift-icon {
-  width: 80px; /* Ajuste o tamanho conforme necessário */
-  height: 80px; /* Ajuste o tamanho conforme necessário */
+  width: 80px;
+  height: 80px; 
   vertical-align: middle;
   margin-top: -50px;
 }
@@ -82,9 +82,9 @@ h3 span {
   position: absolute;
   top: 13%;
   left: 74%;
-  width: 150px; /* Ajuste o tamanho conforme necessário */
-  height: 150px; /* Ajuste o tamanho conforme necessário */
-  opacity: 0.5; /* Ajuste a opacidade conforme necessário */
+  width: 150px;
+  height: 150px; 
+  opacity: 0.5;
   transform: translate(-50%, -50%);
 }
 

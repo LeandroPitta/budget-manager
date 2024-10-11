@@ -3,11 +3,12 @@
 html,
 body {
     height: 100%;
+    width: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: linear-gradient(to bottom right, rgb(243, 178, 243), #90CAF9);
+    background: linear-gradient(to right, rgb(243, 178, 243), #90CAF9);
 }
 
 body {
