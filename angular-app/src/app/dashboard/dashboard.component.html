@@ -17,4 +17,7 @@
     <app-cost-form *ngIf="showCostForm" [available]="giftData.available" (save)="addCost($event)" (cancel)="cancelCostForm()"></app-cost-form>
     <app-cost-card *ngFor="let cost of costs" [cost]="cost"></app-cost-card>    
   </div>
+  <button *ngIf="showBackToTop" mat-fab color="primary" class="back-to-top" (click)="scrollToTop()">
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
 </div>

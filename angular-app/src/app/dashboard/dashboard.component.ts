@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CostService } from '../services/cost.service';
 
 @Component({
@@ -9,7 +9,8 @@ import { CostService } from '../services/cost.service';
 export class DashboardComponent implements OnInit {
   costs: any[] = [];
   giftData: any = { gift: 0, spent: 0, available: 0 };
-  showCostForm: boolean = false; // Flag to control the display of the cost form
+  showCostForm: boolean = false;
+  showBackToTop: boolean = false;
 
   constructor(private costService: CostService) { }
 
@@ -36,5 +37,14 @@ export class DashboardComponent implements OnInit {
 
   cancelCostForm(): void {
     this.showCostForm = false;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.showBackToTop = window.scrollY > 1;
   }
 }
