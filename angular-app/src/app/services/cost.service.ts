@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export class CostService {
 
   //in development, comment one and uncomment the other
-  //private apiUrl = 'http://127.0.0.1:8080/cost-management-1/cost'; //in development
+  private apiUrl = 'http://127.0.0.1:8080/cost-management-1/cost'; //in development
 
-  private apiUrl = `${window.location.origin}/cost`; //in production
+  //private apiUrl = `${window.location.origin}/cost`; //in production
 
   constructor(private http: HttpClient) { }
 
