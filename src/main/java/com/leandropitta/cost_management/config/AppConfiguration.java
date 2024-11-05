@@ -2,17 +2,14 @@ package com.leandropitta.cost_management.config;
 
 import com.leandropitta.cost_management.interceptor.OriginCheckInterceptor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class AppConfiguration implements WebMvcConfigurer {
 
-    @Autowired
     private OriginCheckInterceptor originCheckInterceptor;
 
     @Bean
