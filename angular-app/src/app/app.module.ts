@@ -9,19 +9,23 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CostFormComponent } from './cost-form/cost-form.component';
 import { CostCardComponent } from './cost-card/cost-card.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CostFormComponent,
-    CostCardComponent
+    CostCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,10 @@ import { CostCardComponent } from './cost-card/cost-card.component';
     MatDialogModule,
     MatButtonModule,
     CurrencyMaskModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

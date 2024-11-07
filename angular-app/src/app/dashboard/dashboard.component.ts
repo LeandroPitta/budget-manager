@@ -15,13 +15,16 @@ export class DashboardComponent implements OnInit {
   constructor(private costService: CostService) { }
 
   ngOnInit(): void {
-    this.costService.getCosts().subscribe(response => {
-      this.costs = response.costs;
-    });
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.costService.getCosts(token).subscribe(response => {
+        this.costs = response.costs;
+      });
 
-    this.costService.getGiftData().subscribe(response => {
-      this.giftData = response;
-    });
+      this.costService.getGiftData(token).subscribe(response => {
+        this.giftData = response;
+      });
+    }
   }
 
   toggleCostForm(): void {

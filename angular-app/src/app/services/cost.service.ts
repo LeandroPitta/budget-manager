@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,12 +14,14 @@ export class CostService {
 
   constructor(private http: HttpClient) { }
 
-  getCosts(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getCosts(token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.apiUrl, { headers });
   }
 
-  getGiftData(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/gift`);
+  getGiftData(token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiUrl}/gift`, { headers });
   }
 
   getCost(id: string): Observable<any> {
@@ -27,14 +29,8 @@ export class CostService {
   }
 
   addCost(cost: any): Observable<any> {
-    return this.http.post(this.apiUrl, cost);
-  }
-
-  updateCost(id: string, cost: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, cost);
-  }
-
-  deleteCost(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.apiUrl, cost, { headers });
   }
 }
