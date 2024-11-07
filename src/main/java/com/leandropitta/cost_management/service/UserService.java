@@ -39,7 +39,14 @@ public class UserService {
 
         String jwt = generateJwtToken(authentication);
 
-        return new AuthResponseDto(jwt);
+        User user = userRepository.findByUsername(authRequestDto.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return AuthResponseDto.builder()
+                .token(jwt)
+                .id(user.getId())
+                .username(user.getUsername())
+                .build();
     }
 
     private String generateJwtToken(Authentication authentication) {
