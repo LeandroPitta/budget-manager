@@ -18,6 +18,7 @@ import { CostFormComponent } from './cost-form/cost-form.component';
 import { CostCardComponent } from './cost-card/cost-card.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     DashboardComponent,
     CostFormComponent,
     CostCardComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

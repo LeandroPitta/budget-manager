@@ -1,22 +1,27 @@
-.login-container {
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
   
-  .login-form {
+  .register-form {
     display: flex;
     flex-direction: column;
     width: 300px;
   }
-
+  
   .error-message {
     color: red;
     margin-top: 16px;
   }
 
-  a {
+  button {
     margin-top: 10px;
-    text-align: right;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 50px;
   }

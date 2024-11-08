@@ -3,6 +3,7 @@ package com.leandropitta.cost_management.controller;
 import com.leandropitta.cost_management.dto.request.AuthRequestDto;
 import com.leandropitta.cost_management.dto.response.AuthResponseDto;
 import com.leandropitta.cost_management.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,12 +19,12 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDto> login(@RequestBody AuthRequestDto authRequestDto) {
+    public ResponseEntity<AuthResponseDto> login(@Valid @RequestBody AuthRequestDto authRequestDto) {
         return ResponseEntity.ok(userService.login(authRequestDto));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody AuthRequestDto authRequestDto) {
+    public ResponseEntity<Void> register(@Valid @RequestBody AuthRequestDto authRequestDto) {
         userService.register(authRequestDto);
         return ResponseEntity.ok().build();
     }
