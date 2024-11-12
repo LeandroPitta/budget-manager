@@ -4,6 +4,7 @@ import com.leandropitta.cost_management.dto.request.AuthRequestDto;
 import com.leandropitta.cost_management.dto.response.AuthResponseDto;
 import com.leandropitta.cost_management.entity.User;
 import com.leandropitta.cost_management.repository.UserRepository;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
@@ -67,5 +68,13 @@ public class UserService {
         user.setUsername(authRequestDto.getUsername());
         user.setPassword(passwordEncoder.encode(authRequestDto.getPassword()));
         userRepository.save(user);
+    }
+
+    public String getUsernameFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject();
     }
 }

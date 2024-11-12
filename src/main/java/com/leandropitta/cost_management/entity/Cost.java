@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,4 +23,7 @@ public class Cost {
 
     @Column(nullable = false)
     private BigDecimal cost;
+
+    @Column(name = "users_id", nullable = false)
+    private Long userId;
 }

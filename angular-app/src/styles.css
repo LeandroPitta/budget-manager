@@ -21,7 +21,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+span {
     font-family: 'Brush Script MT', cursive !important;
     font-weight: bold;
 }
