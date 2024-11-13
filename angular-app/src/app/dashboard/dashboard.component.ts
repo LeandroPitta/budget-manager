@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CostService } from '../services/cost.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,8 +13,12 @@ export class DashboardComponent implements OnInit {
   giftData: any = { gift: 0, spent: 0, available: 0 };
   showCostForm: boolean = false;
   showBackToTop: boolean = false;
+  private inactivityTimer: any;
 
-  constructor(private costService: CostService) { }
+  constructor(private costService: CostService,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
@@ -25,6 +31,19 @@ export class DashboardComponent implements OnInit {
         this.giftData = response;
       });
     }
+    this.resetInactivityTimer();
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event: Event): void {
+    this.logout();
+  }
+
+  @HostListener('document:mousemove', [])
+  @HostListener('document:keydown', [])
+  resetInactivityTimer(): void {
+    clearTimeout(this.inactivityTimer);
+    this.inactivityTimer = setTimeout(() => this.logout(), 5 * 60 * 1000);
   }
 
   toggleCostForm(): void {
@@ -49,5 +68,14 @@ export class DashboardComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     this.showBackToTop = window.scrollY > 1;
+  }
+
+  openSettings() {
+    // Lógica para abrir as configurações
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

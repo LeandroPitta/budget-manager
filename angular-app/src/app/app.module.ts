@@ -11,6 +11,7 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -42,7 +43,8 @@ import { RegisterComponent } from './register/register.component';
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
