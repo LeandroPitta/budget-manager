@@ -14,12 +14,12 @@
   </mat-menu>
   <h1>Lívia's 15th birthday</h1>
   <div class="gift-container">
-    <h2><span><img src="../../assets/icons/presents-birthday.gif" alt="gift" class="gift-icon"></span> {{ giftData.gift | currency }}</h2>
+    <h2><span><img src="assets/icons/presents-birthday.gif" alt="gift" class="gift-icon"></span> {{ giftData.gift | currency }}</h2>
     <div class="expense">
       <h3 class="spent">Spent: <span>{{ giftData.spent | currency }}</span></h3>
       <h3 class="available">Available: <span>{{ giftData.available | currency }}</span></h3>
     </div>
-    <div><img src="../../assets/icons/heart-ballon.gif" alt="heart-ballon" class="ballon-icon"></div>
+    <div><img src="assets/icons/heart-ballon.gif" alt="heart-ballon" class="ballon-icon"></div>
   </div>
   <div class="add-icon-container">
     <a mat-icon-button color="primary" (click)="toggleCostForm()" class="add-icon">

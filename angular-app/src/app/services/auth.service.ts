@@ -6,7 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8080/cost-management-1/auth';
+
+  private apiUrl = 'http://127.0.0.1:8080/cost-management-1/auth'; //in development
+
+  //private apiUrl = `${window.location.origin}/auth`; //in production
 
   constructor(private http: HttpClient) { }
 
