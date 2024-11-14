@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CostFormComponent } from './cost-form/cost-form.component';
 import { CostCardComponent } from './cost-card/cost-card.component';
-import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -43,7 +42,6 @@ import { RegisterComponent } from './register/register.component';
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    AppRoutingModule,
     MatMenuModule
   ],
   providers: [],

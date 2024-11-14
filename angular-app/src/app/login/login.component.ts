@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationService } from '../core/navigation.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -12,12 +12,12 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private navigationService: NavigationService) { }
 
   login(): void {
     this.authService.login(this.username, this.password).subscribe(response => {
       localStorage.setItem('token', response.token);
-      this.router.navigate(['/dashboard']);
+      this.navigationService.navigateTo('dashboard');
     },
       error => {
         if (error.status === 403) {
@@ -27,5 +27,9 @@ export class LoginComponent {
         }
       }
     );
+  }
+
+  navigateToRegister(): void {
+    this.navigationService.navigateTo('register');
   }
 }

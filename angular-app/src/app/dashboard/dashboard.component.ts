@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationService } from '../core/navigation.service';
 import { CostService } from '../services/cost.service';
 import { AuthService } from '../services/auth.service';
 
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   private inactivityTimer: any;
 
   constructor(private costService: CostService,
-    private router: Router,
+    private navigationService: NavigationService,
     private authService: AuthService
   ) { }
 
@@ -32,11 +32,6 @@ export class DashboardComponent implements OnInit {
       });
     }
     this.resetInactivityTimer();
-  }
-
-  @HostListener('window:beforeunload', ['$event'])
-  unloadHandler(event: Event): void {
-    this.logout();
   }
 
   @HostListener('document:mousemove', [])
@@ -76,6 +71,6 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.navigationService.navigateTo('login');
   }
 }
