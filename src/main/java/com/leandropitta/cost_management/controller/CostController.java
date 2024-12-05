@@ -16,11 +16,6 @@ public class CostController {
 
     private final CostService costService;
 
-    @GetMapping("/greeting")
-    public String test() {
-        return "Lívia's 15th birthday";
-    }
-
     @GetMapping
     public CostsResponseDto getCosts() {
         return costService.getCosts();
@@ -35,5 +30,11 @@ public class CostController {
     @ResponseStatus(HttpStatus.CREATED)
     public CostResponseDto createCost(@RequestBody CostRequestDto costRequestDto) {
         return costService.createCost(costRequestDto);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CostResponseDto updateCost(@PathVariable Long id, @RequestBody CostRequestDto costRequestDto) {
+        return costService.updateCost(id, costRequestDto);
     }
 }

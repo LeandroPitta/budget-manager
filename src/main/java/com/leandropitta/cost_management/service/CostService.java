@@ -71,6 +71,15 @@ public class CostService {
         return modelMapper.map(savedCost, CostResponseDto.class);
     }
 
+    public CostResponseDto updateCost(Long id, CostRequestDto costRequestDto) {
+        Cost cost = costRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cost not found"));
+        cost.setBuy(costRequestDto.getBuy());
+        cost.setCost(costRequestDto.getCost());
+        Cost updatedCost = costRepository.save(cost);
+        return modelMapper.map(updatedCost, CostResponseDto.class);
+    }
+
     private String getCurrentUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
