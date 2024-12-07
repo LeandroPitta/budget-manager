@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class CostService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
+    @Transactional(readOnly = true)
     public CostsResponseDto getCosts() {
         String username = getCurrentUsername();
         User user = userRepository.findByUsername(username)
@@ -40,6 +42,7 @@ public class CostService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public GiftResponseDto calculateGift() {
         String username = getCurrentUsername();
         User user = userRepository.findByUsername(username)
@@ -60,6 +63,7 @@ public class CostService {
                 .build();
     }
 
+    @Transactional
     public CostResponseDto createCost(CostRequestDto costRequestDto) {
         String username = getCurrentUsername();
         User user = userRepository.findByUsername(username)
@@ -71,6 +75,7 @@ public class CostService {
         return modelMapper.map(savedCost, CostResponseDto.class);
     }
 
+    @Transactional
     public CostResponseDto updateCost(Long id, CostRequestDto costRequestDto) {
         Cost cost = costRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cost not found"));
@@ -78,6 +83,13 @@ public class CostService {
         cost.setCost(costRequestDto.getCost());
         Cost updatedCost = costRepository.save(cost);
         return modelMapper.map(updatedCost, CostResponseDto.class);
+    }
+
+    @Transactional
+    public void deleteCost(Long id) {
+        Cost cost = costRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cost not found"));
+        costRepository.delete(cost);
     }
 
     private String getCurrentUsername() {

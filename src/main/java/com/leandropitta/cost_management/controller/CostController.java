@@ -37,4 +37,10 @@ public class CostController {
     public CostResponseDto updateCost(@PathVariable Long id, @RequestBody CostRequestDto costRequestDto) {
         return costService.updateCost(id, costRequestDto);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCost(@PathVariable Long id) {
+        costService.deleteCost(id);
+    }
 }

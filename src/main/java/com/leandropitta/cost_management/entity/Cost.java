@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "gift_livia")
+@Table (name = "expenses")
 @Data
 public class Cost {
 
