@@ -8,12 +8,10 @@ import com.leandropitta.cost_management.entity.Cost;
 import com.leandropitta.cost_management.entity.User;
 import com.leandropitta.cost_management.repository.CostRepository;
 import com.leandropitta.cost_management.repository.UserRepository;
+import com.leandropitta.cost_management.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +29,7 @@ public class CostService {
 
     @Transactional(readOnly = true)
     public CostsResponseDto getCosts() {
-        String username = getCurrentUsername();
+        String username = SecurityUtil.getCurrentUsername();
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return CostsResponseDto.builder()
@@ -44,7 +42,7 @@ public class CostService {
 
     @Transactional(readOnly = true)
     public GiftResponseDto calculateGift() {
-        String username = getCurrentUsername();
+        String username = SecurityUtil.getCurrentUsername();
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -65,7 +63,7 @@ public class CostService {
 
     @Transactional
     public CostResponseDto createCost(CostRequestDto costRequestDto) {
-        String username = getCurrentUsername();
+        String username = SecurityUtil.getCurrentUsername();
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         Cost cost = modelMapper.map(costRequestDto, Cost.class);
@@ -79,6 +77,12 @@ public class CostService {
     public CostResponseDto updateCost(Long id, CostRequestDto costRequestDto) {
         Cost cost = costRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cost not found"));
+
+        String tokenUsername = SecurityUtil.getCurrentUsername();
+        if (!tokenUsername.equals(userRepository.findById(cost.getUserId()).get().getUsername())) {
+            throw new RuntimeException("Unauthorized");
+        }
+
         cost.setBuy(costRequestDto.getBuy());
         cost.setCost(costRequestDto.getCost());
         Cost updatedCost = costRepository.save(cost);
@@ -89,12 +93,12 @@ public class CostService {
     public void deleteCost(Long id) {
         Cost cost = costRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cost not found"));
-        costRepository.delete(cost);
-    }
 
-    private String getCurrentUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return userDetails.getUsername();
+        String tokenUsername = SecurityUtil.getCurrentUsername();
+        if (!tokenUsername.equals(userRepository.findById(cost.getUserId()).get().getUsername())) {
+            throw new RuntimeException("Unauthorized to delete this cost");
+        }
+
+        costRepository.delete(cost);
     }
 }

@@ -1,10 +1,11 @@
 package com.leandropitta.cost_management.service;
 
 import com.leandropitta.cost_management.dto.request.AuthRequestDto;
+import com.leandropitta.cost_management.dto.request.UpdateUserRequestDto;
 import com.leandropitta.cost_management.dto.response.AuthResponseDto;
 import com.leandropitta.cost_management.entity.User;
 import com.leandropitta.cost_management.repository.UserRepository;
-import io.jsonwebtoken.Claims;
+import com.leandropitta.cost_management.util.SecurityUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
@@ -70,11 +71,11 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public String getUsernameFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(jwtSecret)
-                .parseClaimsJws(token)
-                .getBody();
-        return claims.getSubject();
+    public void updateUser(UpdateUserRequestDto updateUserRequestDto) {
+        String username = SecurityUtil.getCurrentUsername();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setPassword(passwordEncoder.encode(updateUserRequestDto.getPassword()));
+        userRepository.save(user);
     }
 }
