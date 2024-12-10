@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+    --background-gradient: linear-gradient(to right, rgb(243, 178, 243), #90CAF9);
+    --font-color-title: blueviolet;
+    --font-family: 'Pacifico', cursive;
+}
+
 html,
 body {
     height: 100%;
@@ -7,22 +13,18 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: linear-gradient(to right, rgb(243, 178, 243), #90CAF9);
-}
-
-body {
-    margin: 0;
-}
-
-* {
-    font-family: 'Pacifico', cursive;
+    background: var(--background-gradient);
 }
 
 h1,
 h2,
 h3,
-span {
-    font-family: 'Brush Script MT', cursive !important;
-    font-weight: bold;
+span,
+a,
+p,
+input,
+textarea,
+text,
+label {
+    font-family: var(--font-family) !important;
 }

@@ -65,6 +65,10 @@ public class UserService {
     }
 
     public void register(AuthRequestDto authRequestDto) {
+        if (userRepository.findByUsername(authRequestDto.getUsername()).isPresent()) {
+            throw new RuntimeException("Username is already taken");
+        }
+
         User user = new User();
         user.setUsername(authRequestDto.getUsername());
         user.setPassword(passwordEncoder.encode(authRequestDto.getPassword()));

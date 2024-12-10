@@ -10,6 +10,6 @@
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit">Login</button>
       <a (click)="navigateToRegister()">Register new user</a>
-      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>   
+      <div *ngIf="errorMessage" class="error-message"><span>{{ errorMessage }}</span></div>
     </form>
   </div>
