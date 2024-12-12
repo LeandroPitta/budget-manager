@@ -1,7 +1,10 @@
 package com.leandropitta.cost_management.config;
 
+import com.leandropitta.cost_management.dto.response.AuthResponseDto;
+import com.leandropitta.cost_management.entity.User;
 import com.leandropitta.cost_management.interceptor.OriginCheckInterceptor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -14,7 +17,14 @@ public class AppConfiguration implements WebMvcConfigurer {
 
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.addMappings(new PropertyMap<User, AuthResponseDto>() {
+            @Override
+            protected void configure() {
+                map().setBackgroundColor(source.getBackgroundColor().getDescription());
+            }
+        });
+        return modelMapper;
     }
 
     // Coment this in development

@@ -24,6 +24,7 @@ public class Cost {
     @Column(nullable = false)
     private BigDecimal cost;
 
-    @Column(name = "users_id", nullable = false)
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "users_id", nullable = false)
+    private User user;
 }

@@ -9,6 +9,7 @@ import com.leandropitta.cost_management.util.SecurityUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,6 +30,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService userDetailsService;
+    private final ModelMapper modelMapper;
 
     private final String jwtSecret = "yourSecretKey";
     private final long jwtExpirationDays = 1; // 1 day
@@ -44,11 +46,10 @@ public class UserService {
         User user = userRepository.findByUsername(authRequestDto.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return AuthResponseDto.builder()
-                .token(jwt)
-                .id(user.getId())
-                .username(user.getUsername())
-                .build();
+        AuthResponseDto authResponseDto = modelMapper.map(user, AuthResponseDto.class);
+        authResponseDto.setToken(jwt);
+
+        return authResponseDto;
     }
 
     private String generateJwtToken(Authentication authentication) {

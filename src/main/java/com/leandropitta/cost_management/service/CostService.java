@@ -68,7 +68,7 @@ public class CostService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         Cost cost = modelMapper.map(costRequestDto, Cost.class);
         cost.setDate(LocalDateTime.now());
-        cost.setUserId(user.getId());
+        cost.setUser(user);
         Cost savedCost = costRepository.save(cost);
         return modelMapper.map(savedCost, CostResponseDto.class);
     }
@@ -79,7 +79,7 @@ public class CostService {
                 .orElseThrow(() -> new RuntimeException("Cost not found"));
 
         String tokenUsername = SecurityUtil.getCurrentUsername();
-        if (!tokenUsername.equals(userRepository.findById(cost.getUserId()).get().getUsername())) {
+        if (!tokenUsername.equals(cost.getUser().getUsername())) {
             throw new RuntimeException("Unauthorized");
         }
 
@@ -95,7 +95,7 @@ public class CostService {
                 .orElseThrow(() -> new RuntimeException("Cost not found"));
 
         String tokenUsername = SecurityUtil.getCurrentUsername();
-        if (!tokenUsername.equals(userRepository.findById(cost.getUserId()).get().getUsername())) {
+        if (!tokenUsername.equals(cost.getUser().getUsername())) {
             throw new RuntimeException("Unauthorized to delete this cost");
         }
 

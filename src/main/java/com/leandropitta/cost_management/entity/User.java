@@ -17,4 +17,23 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "background_color", nullable = false)
+    private BackgroundColor backgroundColor;
+
+    @ManyToOne
+    @JoinColumn(name = "title_color", nullable = false)
+    private TitleColor titleColor;
+
+    @ManyToOne
+    @JoinColumn(name = "font_family", nullable = false)
+    private FontFamily fontFamily;
+
+    @Column(name = "budget_gif", nullable = false)
+    private Long budgetGif;
+
+    @ManyToOne
+    @JoinColumn(name = "background_gif", nullable = false)
+    private BackgroundGif backgroundGif;
 }
