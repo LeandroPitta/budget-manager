@@ -47,6 +47,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         AuthResponseDto authResponseDto = modelMapper.map(user, AuthResponseDto.class);
+        authResponseDto.setBudgetGif(user.getBudgetGif()); //Make logic for this
         authResponseDto.setToken(jwt);
 
         return authResponseDto;

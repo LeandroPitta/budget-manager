@@ -31,7 +31,7 @@ public class User {
     private FontFamily fontFamily;
 
     @Column(name = "budget_gif", nullable = false)
-    private Long budgetGif;
+    private String budgetGif;
 
     @ManyToOne
     @JoinColumn(name = "background_gif", nullable = false)

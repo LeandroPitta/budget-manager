@@ -14,4 +14,8 @@ public class AuthResponseDto {
     private String username;
     private String token;
     private String backgroundColor;
+    private String titleColor;
+    private String fontFamily;
+    private String budgetGif;
+    private String backgroundGif;
 }
