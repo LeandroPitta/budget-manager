@@ -24,7 +24,6 @@ public class AppConfiguration implements WebMvcConfigurer {
                 map().setBackgroundColor(source.getBackgroundColor().getDescription());
                 map().setTitleColor(source.getTitleColor().getDescription());
                 map().setFontFamily(source.getFontFamily().getDescription());
-                map().setBackgroundGif(source.getBackgroundGif().getDescription());
             }
         });
         return modelMapper;

@@ -17,10 +17,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Service
 @AllArgsConstructor
@@ -47,7 +51,8 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         AuthResponseDto authResponseDto = modelMapper.map(user, AuthResponseDto.class);
-        authResponseDto.setBudgetGif(user.getBudgetGif()); //Make logic for this
+        authResponseDto.setBackgroundGif(getBackgroundGifUrl(user.getBackgroundGif().getId()));
+        authResponseDto.setBudgetGif(getBudgetGifUrl(user.getBudgetGif()));
         authResponseDto.setToken(jwt);
 
         return authResponseDto;
@@ -83,5 +88,26 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         user.setPassword(passwordEncoder.encode(updateUserRequestDto.getPassword()));
         userRepository.save(user);
+    }
+
+    private String getBackgroundGifUrl(Long gifId) {
+        String gifPath = String.format("src/main/resources/static/gifs/background_gif/%s.gif", gifId);
+        if (Files.exists(Paths.get(gifPath))) {
+            String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+            return String.format("%s/gifs/background_gif/%s.gif", baseUrl, gifId);
+        } else {
+            return null;
+        }
+    }
+
+    private String getBudgetGifUrl(String gifId) {
+        String gifPath = String.format("src/main/resources/static/gifs/budget_gif/%s.gif", gifId);
+
+        if (Files.exists(Paths.get(gifPath))) {
+            String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+            return String.format("%s/gifs/budget_gif/%s.gif", baseUrl, gifId);
+        } else {
+            return gifId;
+        }
     }
 }
