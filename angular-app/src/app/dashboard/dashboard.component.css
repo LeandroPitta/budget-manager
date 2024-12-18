@@ -95,14 +95,14 @@ h3 span {
   opacity: 0.2;
 }
 
-.gift-icon {
+.budget {
   width: 80px;
   height: 80px; 
   vertical-align: middle;
   margin-top: -50px;
 }
 
-.ballon-icon {
+.background-gif {
   position: absolute;
   top: 13%;
   left: 74%;

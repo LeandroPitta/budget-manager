@@ -1,10 +1,10 @@
-package com.leandropitta.cost_management.controller;
+package com.leandropitta.budget_manager.controller;
 
-import com.leandropitta.cost_management.dto.request.CostRequestDto;
-import com.leandropitta.cost_management.dto.response.CostResponseDto;
-import com.leandropitta.cost_management.dto.response.CostsResponseDto;
-import com.leandropitta.cost_management.dto.response.GiftResponseDto;
-import com.leandropitta.cost_management.service.CostService;
+import com.leandropitta.budget_manager.dto.request.CostRequestDto;
+import com.leandropitta.budget_manager.dto.response.CostResponseDto;
+import com.leandropitta.budget_manager.dto.response.CostsResponseDto;
+import com.leandropitta.budget_manager.dto.response.GiftResponseDto;
+import com.leandropitta.budget_manager.service.CostService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

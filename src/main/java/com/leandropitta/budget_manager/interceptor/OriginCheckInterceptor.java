@@ -1,4 +1,4 @@
-package com.leandropitta.cost_management.interceptor;
+package com.leandropitta.budget_manager.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.leandropitta.cost_management.util;
+package com.leandropitta.budget_manager.util;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

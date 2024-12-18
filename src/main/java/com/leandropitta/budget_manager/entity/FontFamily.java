@@ -1,4 +1,4 @@
-package com.leandropitta.cost_management.entity;
+package com.leandropitta.budget_manager.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

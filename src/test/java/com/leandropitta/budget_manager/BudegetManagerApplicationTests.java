@@ -1,10 +1,10 @@
-package com.leandropitta.cost_management;
+package com.leandropitta.budget_manager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CostManagementApplicationTests {
+class BudegetManagerApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,4 +1,4 @@
-package com.leandropitta.cost_management.dto.response;
+package com.leandropitta.budget_manager.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

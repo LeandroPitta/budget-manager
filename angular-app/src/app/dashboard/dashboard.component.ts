@@ -14,6 +14,10 @@ export class DashboardComponent implements OnInit {
   showCostForm: boolean = false;
   showBackToTop: boolean = false;
   private inactivityTimer: any;
+  backgroundGif: string = '';
+  backgroundGifNotNull: boolean = true;
+  budgetGif: string = '';
+  isBudgetGifUrl: boolean = false;
 
   constructor(private costService: CostService,
     private navigationService: NavigationService,
@@ -32,6 +36,39 @@ export class DashboardComponent implements OnInit {
       });
     }
     this.resetInactivityTimer();
+
+    this.loadCustomization();
+  }
+
+  loadCustomization(): void {
+    const backgroundColor = localStorage.getItem('backgroundColor');
+    const titleColor = localStorage.getItem('titleColor');
+    const fontFamily = localStorage.getItem('fontFamily');
+
+    if (backgroundColor) {
+      document.documentElement.style.setProperty('--background-gradient', backgroundColor);
+    }
+    if (titleColor) {
+      document.documentElement.style.setProperty('--font-color-title', titleColor);
+    }
+    if (fontFamily) {
+      document.documentElement.style.setProperty('--font-family', fontFamily);
+    }
+
+    this.backgroundGif = localStorage.getItem('backgroundGif') || '';
+    this.backgroundGifNotNull = this.backgroundGif !== 'null';
+
+    this.budgetGif = localStorage.getItem('budgetGif') || '';
+    this.isBudgetGifUrl = this.isValidUrl(this.budgetGif);
+  }
+  
+  isValidUrl(string: string): boolean {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   @HostListener('document:mousemove', [])

@@ -1,6 +1,6 @@
-package com.leandropitta.cost_management.filter;
+package com.leandropitta.budget_manager.filter;
 
-import com.leandropitta.cost_management.service.CustomUserDetailsService;
+import com.leandropitta.budget_manager.service.CustomUserDetailsService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;

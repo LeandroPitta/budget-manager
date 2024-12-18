@@ -1,7 +1,7 @@
-package com.leandropitta.cost_management.config;
+package com.leandropitta.budget_manager.config;
 
-import com.leandropitta.cost_management.filter.JwtAuthenticationFilter;
-import com.leandropitta.cost_management.service.CustomUserDetailsService;
+import com.leandropitta.budget_manager.filter.JwtAuthenticationFilter;
+import com.leandropitta.budget_manager.service.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

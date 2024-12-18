@@ -1,4 +1,4 @@
-package com.leandropitta.cost_management.dto.request;
+package com.leandropitta.budget_manager.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

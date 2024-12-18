@@ -14,12 +14,18 @@
   </mat-menu>
   <h1>Lívia's 15th birthday</h1>
   <div class="gift-container">
-    <h2><span><img src="assets/icons/presents-birthday.gif" alt="gift" class="gift-icon"></span> {{ giftData.gift | currency }}</h2>
+    <h2>
+      <span *ngIf="isBudgetGifUrl; else textTemplate">
+        <img [src]="budgetGif" alt="budget" class="budget">
+      </span>
+      <ng-template #textTemplate>{{ budgetGif + ":" }}</ng-template>
+      {{ giftData.gift | currency }}
+    </h2>
     <div class="expense">
       <h3 class="spent">Spent: <span>{{ giftData.spent | currency }}</span></h3>
       <h3 class="available">Available: <span>{{ giftData.available | currency }}</span></h3>
     </div>
-    <div><img src="assets/icons/heart-ballon.gif" alt="heart-ballon" class="ballon-icon"></div>
+    <div *ngIf="backgroundGifNotNull"><img [src]="backgroundGif" alt="background-gif" class="background-gif"></div>
   </div>
   <div class="add-icon-container">
     <a mat-icon-button color="primary" (click)="toggleCostForm()" class="add-icon">
@@ -27,7 +33,8 @@
     </a>
   </div>
   <div class="costs-container">
-    <app-cost-form *ngIf="showCostForm" [available]="giftData.available" (save)="addCost($event)" (cancel)="cancelCostForm()"></app-cost-form>
+    <app-cost-form *ngIf="showCostForm" [available]="giftData.available" (save)="addCost($event)"
+      (cancel)="cancelCostForm()"></app-cost-form>
     <app-cost-card *ngFor="let cost of costs" [cost]="cost"></app-cost-card>
   </div>
   <button *ngIf="showBackToTop" mat-fab color="primary" class="back-to-top" (click)="scrollToTop()">

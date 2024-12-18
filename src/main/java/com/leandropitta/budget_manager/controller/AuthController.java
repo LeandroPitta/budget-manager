@@ -1,9 +1,9 @@
-package com.leandropitta.cost_management.controller;
+package com.leandropitta.budget_manager.controller;
 
-import com.leandropitta.cost_management.dto.request.AuthRequestDto;
-import com.leandropitta.cost_management.dto.request.UpdateUserRequestDto;
-import com.leandropitta.cost_management.dto.response.AuthResponseDto;
-import com.leandropitta.cost_management.service.UserService;
+import com.leandropitta.budget_manager.dto.request.AuthRequestDto;
+import com.leandropitta.budget_manager.dto.request.UpdateUserRequestDto;
+import com.leandropitta.budget_manager.dto.response.AuthResponseDto;
+import com.leandropitta.budget_manager.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

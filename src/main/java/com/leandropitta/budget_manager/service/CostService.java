@@ -1,14 +1,14 @@
-package com.leandropitta.cost_management.service;
+package com.leandropitta.budget_manager.service;
 
-import com.leandropitta.cost_management.dto.request.CostRequestDto;
-import com.leandropitta.cost_management.dto.response.CostResponseDto;
-import com.leandropitta.cost_management.dto.response.CostsResponseDto;
-import com.leandropitta.cost_management.dto.response.GiftResponseDto;
-import com.leandropitta.cost_management.entity.Cost;
-import com.leandropitta.cost_management.entity.User;
-import com.leandropitta.cost_management.repository.CostRepository;
-import com.leandropitta.cost_management.repository.UserRepository;
-import com.leandropitta.cost_management.util.SecurityUtil;
+import com.leandropitta.budget_manager.dto.request.CostRequestDto;
+import com.leandropitta.budget_manager.dto.response.CostResponseDto;
+import com.leandropitta.budget_manager.dto.response.CostsResponseDto;
+import com.leandropitta.budget_manager.dto.response.GiftResponseDto;
+import com.leandropitta.budget_manager.entity.Cost;
+import com.leandropitta.budget_manager.entity.User;
+import com.leandropitta.budget_manager.repository.CostRepository;
+import com.leandropitta.budget_manager.repository.UserRepository;
+import com.leandropitta.budget_manager.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;

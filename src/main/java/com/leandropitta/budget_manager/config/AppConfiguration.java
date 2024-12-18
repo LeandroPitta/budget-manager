@@ -1,8 +1,8 @@
-package com.leandropitta.cost_management.config;
+package com.leandropitta.budget_manager.config;
 
-import com.leandropitta.cost_management.dto.response.AuthResponseDto;
-import com.leandropitta.cost_management.entity.User;
-import com.leandropitta.cost_management.interceptor.OriginCheckInterceptor;
+import com.leandropitta.budget_manager.dto.response.AuthResponseDto;
+import com.leandropitta.budget_manager.entity.User;
+import com.leandropitta.budget_manager.interceptor.OriginCheckInterceptor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.context.annotation.Bean;

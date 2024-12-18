@@ -1,7 +1,7 @@
-package com.leandropitta.cost_management.service;
+package com.leandropitta.budget_manager.service;
 
-import com.leandropitta.cost_management.entity.User;
-import com.leandropitta.cost_management.repository.UserRepository;
+import com.leandropitta.budget_manager.entity.User;
+import com.leandropitta.budget_manager.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

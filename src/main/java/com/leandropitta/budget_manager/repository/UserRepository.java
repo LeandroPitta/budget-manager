@@ -1,6 +1,6 @@
-package com.leandropitta.cost_management.repository;
+package com.leandropitta.budget_manager.repository;
 
-import com.leandropitta.cost_management.entity.User;
+import com.leandropitta.budget_manager.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

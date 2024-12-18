@@ -1,11 +1,11 @@
-package com.leandropitta.cost_management.service;
+package com.leandropitta.budget_manager.service;
 
-import com.leandropitta.cost_management.dto.request.AuthRequestDto;
-import com.leandropitta.cost_management.dto.request.UpdateUserRequestDto;
-import com.leandropitta.cost_management.dto.response.AuthResponseDto;
-import com.leandropitta.cost_management.entity.User;
-import com.leandropitta.cost_management.repository.UserRepository;
-import com.leandropitta.cost_management.util.SecurityUtil;
+import com.leandropitta.budget_manager.dto.request.AuthRequestDto;
+import com.leandropitta.budget_manager.dto.request.UpdateUserRequestDto;
+import com.leandropitta.budget_manager.dto.response.AuthResponseDto;
+import com.leandropitta.budget_manager.entity.User;
+import com.leandropitta.budget_manager.repository.UserRepository;
+import com.leandropitta.budget_manager.util.SecurityUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
