@@ -13,6 +13,7 @@ public class AuthResponseDto {
     private Long id;
     private String username;
     private String token;
+    private String title;
     private String backgroundColor;
     private String titleColor;
     private String fontFamily;

@@ -18,6 +18,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    private String title;
+
     @ManyToOne
     @JoinColumn(name = "background_color", nullable = false)
     private BackgroundColor backgroundColor;

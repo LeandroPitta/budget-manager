@@ -14,8 +14,9 @@ export class DashboardComponent implements OnInit {
   showCostForm: boolean = false;
   showBackToTop: boolean = false;
   private inactivityTimer: any;
+  title: string = '';
   backgroundGif: string = '';
-  backgroundGifNotNull: boolean = true;
+  isBackgroundGifNotNull: boolean = true;
   budgetGif: string = '';
   isBudgetGifUrl: boolean = false;
 
@@ -41,6 +42,12 @@ export class DashboardComponent implements OnInit {
   }
 
   loadCustomization(): void {
+    if (localStorage.getItem('title') === 'null') {
+      this.title = ''
+    } else {
+      this.title = localStorage.getItem('title') || '';
+    }
+
     const backgroundColor = localStorage.getItem('backgroundColor');
     const titleColor = localStorage.getItem('titleColor');
     const fontFamily = localStorage.getItem('fontFamily');
@@ -56,12 +63,12 @@ export class DashboardComponent implements OnInit {
     }
 
     this.backgroundGif = localStorage.getItem('backgroundGif') || '';
-    this.backgroundGifNotNull = this.backgroundGif !== 'null';
+    this.isBackgroundGifNotNull = this.backgroundGif !== 'null';
 
     this.budgetGif = localStorage.getItem('budgetGif') || '';
     this.isBudgetGifUrl = this.isValidUrl(this.budgetGif);
   }
-  
+
   isValidUrl(string: string): boolean {
     try {
       new URL(string);

@@ -18,6 +18,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(response => {
       localStorage.setItem('token', response.token);
       localStorage.setItem('backgroundColor', response.backgroundColor);
+      localStorage.setItem('title', response.title);
       localStorage.setItem('titleColor', response.titleColor);
       localStorage.setItem('fontFamily', response.fontFamily);
       localStorage.setItem('budgetGif', response.budgetGif);
