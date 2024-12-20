@@ -1,12 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { NavigationService } from '../core/navigation.service';
-import { CostService } from '../services/cost.service';
-import { AuthService } from '../services/auth.service';
+import { NavigationService } from '../../core/navigation.service';
+import { CostService } from '../../services/cost.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   costs: any[] = [];
@@ -20,19 +20,20 @@ export class DashboardComponent implements OnInit {
   budgetGif: string = '';
   isBudgetGifUrl: boolean = false;
 
-  constructor(private costService: CostService,
+  constructor(
+    private costService: CostService,
     private navigationService: NavigationService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      this.costService.getCosts(token).subscribe(response => {
+      this.costService.getCosts(token).subscribe((response) => {
         this.costs = response.costs;
       });
 
-      this.costService.getGiftData(token).subscribe(response => {
+      this.costService.getGiftData(token).subscribe((response) => {
         this.giftData = response;
       });
     }
@@ -43,7 +44,7 @@ export class DashboardComponent implements OnInit {
 
   loadCustomization(): void {
     if (localStorage.getItem('title') === 'null') {
-      this.title = ''
+      this.title = '';
     } else {
       this.title = localStorage.getItem('title') || '';
     }
@@ -53,10 +54,16 @@ export class DashboardComponent implements OnInit {
     const fontFamily = localStorage.getItem('fontFamily');
 
     if (backgroundColor) {
-      document.documentElement.style.setProperty('--background-gradient', backgroundColor);
+      document.documentElement.style.setProperty(
+        '--background-gradient',
+        backgroundColor
+      );
     }
     if (titleColor) {
-      document.documentElement.style.setProperty('--font-color-title', titleColor);
+      document.documentElement.style.setProperty(
+        '--font-color-title',
+        titleColor
+      );
     }
     if (fontFamily) {
       document.documentElement.style.setProperty('--font-family', fontFamily);

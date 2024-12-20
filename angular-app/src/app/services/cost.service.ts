@@ -3,16 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CostService {
-
   //in development, comment one and uncomment the other
   private apiUrl = 'http://127.0.0.1:8080/cost'; //in development
 
   //private apiUrl = `${window.location.origin}/cost`; //in production
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCosts(token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

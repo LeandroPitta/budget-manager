@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NavigationService {
-
   private currentView: string = 'login';
 
   constructor(private authService: AuthService) {

@@ -12,32 +12,53 @@
       <span>Logout</span>
     </button>
   </mat-menu>
-  <h1>{{title}}</h1>
+  <h1>{{ title }}</h1>
   <div class="gift-container">
     <h2>
       <span *ngIf="isBudgetGifUrl; else textTemplate">
-        <img [src]="budgetGif" alt="budget" class="budget">
+        <img [src]="budgetGif" alt="budget" class="budget" />
       </span>
       <ng-template #textTemplate>{{ budgetGif + ":" }}</ng-template>
       {{ giftData.gift | currency }}
     </h2>
     <div class="expense">
-      <h3 class="spent">Spent: <span>{{ giftData.spent | currency }}</span></h3>
-      <h3 class="available">Available: <span>{{ giftData.available | currency }}</span></h3>
+      <h3 class="spent">
+        Spent: <span>{{ giftData.spent | currency }}</span>
+      </h3>
+      <h3 class="available">
+        Available: <span>{{ giftData.available | currency }}</span>
+      </h3>
     </div>
-    <div *ngIf="isBackgroundGifNotNull"><img [src]="backgroundGif" alt="background-gif" class="background-gif"></div>
+    <div *ngIf="isBackgroundGifNotNull">
+      <img [src]="backgroundGif" alt="background-gif" class="background-gif" />
+    </div>
   </div>
   <div class="add-icon-container">
-    <a mat-icon-button color="primary" (click)="toggleCostForm()" class="add-icon">
+    <a
+      mat-icon-button
+      color="primary"
+      (click)="toggleCostForm()"
+      class="add-icon"
+    >
       <mat-icon>add_circle</mat-icon>
     </a>
   </div>
   <div class="costs-container">
-    <app-cost-form *ngIf="showCostForm" [available]="giftData.available" (save)="addCost($event)"
-      (cancel)="cancelCostForm()"></app-cost-form>
+    <app-cost-form
+      *ngIf="showCostForm"
+      [available]="giftData.available"
+      (save)="addCost($event)"
+      (cancel)="cancelCostForm()"
+    ></app-cost-form>
     <app-cost-card *ngFor="let cost of costs" [cost]="cost"></app-cost-card>
   </div>
-  <button *ngIf="showBackToTop" mat-fab color="primary" class="back-to-top" (click)="scrollToTop()">
+  <button
+    *ngIf="showBackToTop"
+    mat-fab
+    color="primary"
+    class="back-to-top"
+    (click)="scrollToTop()"
+  >
     <mat-icon>arrow_upward</mat-icon>
   </button>
 </div>

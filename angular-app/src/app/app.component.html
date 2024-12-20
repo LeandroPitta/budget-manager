@@ -1,3 +1,7 @@
 <app-login *ngIf="navigationService.getCurrentView() === 'login'"></app-login>
-<app-register *ngIf="navigationService.getCurrentView() === 'register'"></app-register>
-<app-dashboard *ngIf="navigationService.getCurrentView() === 'dashboard'"></app-dashboard>
+<app-register
+  *ngIf="navigationService.getCurrentView() === 'register'"
+></app-register>
+<app-dashboard
+  *ngIf="navigationService.getCurrentView() === 'dashboard'"
+></app-dashboard>

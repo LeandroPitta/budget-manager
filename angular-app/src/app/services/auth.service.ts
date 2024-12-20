@@ -3,15 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private apiUrl = 'http://127.0.0.1:8080/auth'; //in development
 
   //private apiUrl = `${window.location.origin}/auth`; // in production
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { username, password });
@@ -21,7 +20,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, { username, password });
   }
 
- isAuthenticated(): boolean {
+  isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
   }
 
