@@ -30,8 +30,8 @@ h1 {
   font-size: 34px;
 }
 
-.icons, span {
-  color: blueviolet !important;
+.menu-item * {
+  color: var(--font-color-title) !important;
 }
 
 .gift-container {
@@ -97,7 +97,7 @@ h3 span {
 
 .budget {
   width: 80px;
-  height: 80px; 
+  height: 80px;
   vertical-align: middle;
   margin-top: -50px;
 }
@@ -107,7 +107,7 @@ h3 span {
   top: 13%;
   left: 74%;
   width: 150px;
-  height: 150px; 
+  height: 150px;
   opacity: 0.5;
   transform: translate(-50%, -50%);
 }
