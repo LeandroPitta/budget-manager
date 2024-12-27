@@ -90,23 +90,22 @@ public class UserService {
     }
 
     private String getBackgroundGifUrl(Long gifId) {
-        String gifPath = String.format("src/main/resources/static/gifs/background_gif/%s.gif", gifId);
-        if (Files.exists(Paths.get(gifPath))) {
+        String gifPath = String.format("assets/gifs/background_gif/%s.gif", gifId);
+        if (getClass().getClassLoader().getResource(gifPath) != null) {
             String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-            return String.format("%s/gifs/background_gif/%s.gif", baseUrl, gifId);
+            return String.format("%s/assets/gifs/background_gif/%s.gif", baseUrl, gifId);
         } else {
             return null;
         }
     }
-
+    
     private String getBudgetGifUrl(String gifId) {
-        String gifPath = String.format("src/main/resources/static/gifs/budget_gif/%s.gif", gifId);
-
-        if (Files.exists(Paths.get(gifPath))) {
+        String gifPath = String.format("assets/gifs/budget_gif/%s.gif", gifId);
+        if (getClass().getClassLoader().getResource(gifPath) != null) {
             String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-            return String.format("%s/gifs/budget_gif/%s.gif", baseUrl, gifId);
+            return String.format("%s/assets/gifs/budget_gif/%s.gif", baseUrl, gifId);
         } else {
             return gifId;
         }
-    }
+    }    
 }
