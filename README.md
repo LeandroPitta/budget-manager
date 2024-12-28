@@ -77,20 +77,22 @@ The application uses PostgreSQL as the database management system. It stores all
    - Install the Dev Container extension for your IDE (VS Code or IntelliJ Ultimate).
 
 2. **Open Project in Container**:
-   - Open the project in your IDE.
-   - Use the command palette (VS Code: F1, IntelliJ: Ctrl+Shift+A) and select Reopen in Container.
+   - Open your IDE without a project.
+      - Use the command palette (VS Code: F1, IntelliJ: Ctrl+Shift+A) and select "Dev Containers: Clone Repository in Container Volume".
+      - Enter the repository URL and follow the prompts to clone and open the project in a dev container.
 
 3. **Start Backend**: 
    ```bash
+   mvn clean install
    mvn spring-boot:run
    ```
 
 4. **Start Frontend**: 
    - Navigate to the `angular-app` directory and run:     
    ```bash
+   npm ci
    ng serve
    ```
-
 
 ## Help
 For more help, refer to:
