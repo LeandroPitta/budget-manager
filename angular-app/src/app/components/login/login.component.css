@@ -1,23 +1,29 @@
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #E0E0E0;
+}
 
-  .error-message {
-    color: red;
-    margin-top: 16px;
-  }
+* {
+  font-family: 'Roboto', sans-serif;
+}
 
-  a {
-    margin-top: 10px;
-    text-align: right;
-    cursor: pointer;
-  }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 16px;
+}
+
+a {
+  margin-top: 10px;
+  text-align: right;
+  cursor: pointer;
+}
