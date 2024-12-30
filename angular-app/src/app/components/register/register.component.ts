@@ -17,7 +17,7 @@ export class RegisterComponent {
     private authService: AuthService,
     private navigationService: NavigationService,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   register(): void {
     this.authService.register(this.username, this.password).subscribe(
