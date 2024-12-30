@@ -24,3 +24,13 @@ span {
   justify-content: space-between;
   font-size: 12px;
 }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.small-icon {
+  font-size: 16px;
+}

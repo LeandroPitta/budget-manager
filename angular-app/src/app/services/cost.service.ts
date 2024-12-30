@@ -11,7 +11,7 @@ export class CostService {
   private apiUrl = 'http://127.0.0.1:8080/cost'; //in development
   //private apiUrl = `${window.location.origin}/cost`; //in production
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCosts(token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -31,5 +31,12 @@ export class CostService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(this.apiUrl, cost, { headers });
+  }
+
+  updateCost(id: string, buy: any, cost: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const body = { buy, cost };
+    return this.http.put(`${this.apiUrl}/${id}`, body, { headers });
   }
 }

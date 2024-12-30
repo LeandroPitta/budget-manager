@@ -6,8 +6,12 @@
     <p><span>Date:</span> {{ cost.date | date : "short" }}</p>
     <p><span>Cost:</span> {{ cost.cost | currency }}</p>
   </mat-card-content>
-  <!-- <mat-card-actions>
-    <button mat-button (click)="editCost(cost.id)">Edit</button>
-    <button mat-button (click)="deleteCost(cost.id)">Delete</button>
-  </mat-card-actions> -->
+  <mat-card-actions class="actions">
+    <button mat-icon-button>
+      <mat-icon class="small-icon">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon class="small-icon">delete</mat-icon>
+    </button>
+  </mat-card-actions>
 </mat-card>
