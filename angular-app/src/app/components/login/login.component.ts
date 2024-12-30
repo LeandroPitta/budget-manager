@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationService } from '../../core/navigation.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -16,6 +16,10 @@ export class LoginComponent {
     private authService: AuthService,
     private navigationService: NavigationService
   ) {}
+
+   ngOnInit(): void {
+    localStorage.clear();
+  }
 
   login(): void {
     this.authService.login(this.username, this.password).subscribe(

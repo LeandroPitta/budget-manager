@@ -122,6 +122,7 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    localStorage.clear();
     this.navigationService.navigateTo('login');
   }
 }

@@ -7,14 +7,19 @@
   background-color: #E0E0E0;
 }
 
-* {
-  font-family: 'Roboto', sans-serif;
+:host * {
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   width: 280px;
+}
+
+.login-form mat-form-field {
+  display: block;
+  margin-bottom: -14px;
 }
 
 .error-message {
