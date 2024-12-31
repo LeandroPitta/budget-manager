@@ -6,7 +6,7 @@ mat-card {
   width: 300px;
   border-radius: 15px; 
   background: rgba(255, 255, 255, 0.1); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 span {
@@ -15,7 +15,7 @@ span {
 
 .buy {
   display: flex;  
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   font-size: 14px;
 }
 
@@ -29,8 +29,17 @@ span {
   display: flex;
   justify-content: flex-end;
   padding: 0;
+  margin: -4px 0 -12px 0;
 }
 
 .small-icon {
   font-size: 16px;
+}
+
+.edit {
+  color: #2c6338;
+}
+
+.delete {
+  color: #961320;
 }

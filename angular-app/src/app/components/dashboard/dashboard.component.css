@@ -49,13 +49,9 @@ h1 {
 
 h2 {
   font-size: 20px;
-  color: rgb(21, 21, 202);
+  color: rgb(14, 14, 184);
   margin: 0;
   align-self: center;
-}
-
-h2 span {
-  color: blue !important;
 }
 
 h3 {
@@ -68,11 +64,11 @@ h3 span {
 }
 
 .spent {
-  color: red;
+  color: rgb(190, 21, 21);
 }
 
 .spent span {
-  color: rgb(179, 30, 30) !important;
+  color: rgb(154, 16, 16) !important;
 }
 
 .available {
@@ -80,7 +76,7 @@ h3 span {
 }
 
 .available span {
-  color: rgb(2, 92, 2) !important;
+  color: rgb(8, 70, 8) !important;
 }
 
 .add-icon-container {
