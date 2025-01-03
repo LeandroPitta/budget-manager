@@ -44,20 +44,26 @@
     </a>
   </div>
   <div class="costs-container">
-    <app-cost-form-update
-      *ngIf="showCostUpdateForm"
-      [cost]="selectedCost"
-      [available]="giftData.available"
-      (save)="saveUpdatedCost($event)"
-      (cancel)="cancelUpdateCostForm()"
-    ></app-cost-form-update>
     <app-cost-form
       *ngIf="showCostForm"
       [available]="giftData.available"
       (save)="addCost($event)"
       (cancel)="cancelCostForm()"
     ></app-cost-form>
-    <app-cost-card *ngFor="let cost of costs" [cost]="cost" (edit)="updateCost(cost)"></app-cost-card>
+    <ng-container *ngFor="let cost of costs">
+      <app-cost-card
+        *ngIf="selectedCost?.id !== cost.id"
+        [cost]="cost"
+        (edit)="updateCost(cost)"
+      ></app-cost-card>
+      <app-cost-form-update
+        *ngIf="selectedCost?.id === cost.id"
+        [cost]="selectedCost"
+        [available]="giftData.available"
+        (save)="saveUpdatedCost($event)"
+        (cancel)="cancelUpdateCostForm()"
+      ></app-cost-form-update>
+    </ng-container>
   </div>
   <button
     *ngIf="showBackToTop"

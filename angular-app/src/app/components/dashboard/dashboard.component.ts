@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationService } from '../../core/navigation.service';
 import { CostService } from '../../services/cost.service';
 import { AuthService } from '../../services/auth.service';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-dashboard',
@@ -111,20 +112,23 @@ export class DashboardComponent implements OnInit {
 
   updateCost(cost: any): void {
     this.selectedCost = cost;
-    this.showCostUpdateForm = true;
   }
 
   saveUpdatedCost(updatedCost: any): void {
-    const index = this.costs.findIndex(cost => cost.id === updatedCost.id);
+    const index = this.costs.findIndex((cost) => cost.id === updatedCost.id);
     if (index !== -1) {
       this.costs[index] = updatedCost;
     }
-    this.showCostUpdateForm = false;
     this.selectedCost = null;
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.costService.getGiftData(token).subscribe((response) => {
+        this.giftData = response;
+      });
+    }
   }
 
   cancelUpdateCostForm(): void {
-    this.showCostUpdateForm = false;
     this.selectedCost = null;
   }
 
