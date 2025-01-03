@@ -19,6 +19,7 @@ import { CostFormComponent } from './components/cost-form/cost-form.component';
 import { CostCardComponent } from './components/cost-card/cost-card.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CostFormUpdateComponent } from './components/cost-form-update/cost-form-update.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RegisterComponent } from './components/register/register.component';
     CostCardComponent,
     LoginComponent,
     RegisterComponent,
+    CostFormUpdateComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
   costs: any[] = [];
   giftData: any = { gift: 0, spent: 0, available: 0 };
   showCostForm: boolean = false;
+  showCostUpdateForm: boolean = false;
+  selectedCost: any = null;
   showBackToTop: boolean = false;
   private inactivityTimer: any;
   title: string = '';
@@ -105,6 +107,25 @@ export class DashboardComponent implements OnInit {
 
   cancelCostForm(): void {
     this.showCostForm = false;
+  }
+
+  updateCost(cost: any): void {
+    this.selectedCost = cost;
+    this.showCostUpdateForm = true;
+  }
+
+  saveUpdatedCost(updatedCost: any): void {
+    const index = this.costs.findIndex(cost => cost.id === updatedCost.id);
+    if (index !== -1) {
+      this.costs[index] = updatedCost;
+    }
+    this.showCostUpdateForm = false;
+    this.selectedCost = null;
+  }
+
+  cancelUpdateCostForm(): void {
+    this.showCostUpdateForm = false;
+    this.selectedCost = null;
   }
 
   scrollToTop(): void {

@@ -7,7 +7,7 @@
     <p><span>Cost:</span> {{ cost.cost | currency }}</p>
   </mat-card-content>
   <mat-card-actions class="actions">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="editCost()">
       <mat-icon class="small-icon edit">edit</mat-icon>
     </button>
     <button mat-icon-button>

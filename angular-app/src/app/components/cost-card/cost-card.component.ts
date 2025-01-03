@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cost-card',
@@ -7,4 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class CostCardComponent {
   @Input() cost: any;
+  @Output() edit = new EventEmitter<void>();
+
+  editCost(): void {
+    this.edit.emit();
+  }
 }
