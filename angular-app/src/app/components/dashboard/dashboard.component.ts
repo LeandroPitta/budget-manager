@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationService } from '../../core/navigation.service';
 import { CostService } from '../../services/cost.service';
 import { AuthService } from '../../services/auth.service';
-import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-dashboard',
@@ -130,6 +129,18 @@ export class DashboardComponent implements OnInit {
 
   cancelUpdateCostForm(): void {
     this.selectedCost = null;
+  }
+
+  deleteCost(cost: any): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.costService.deleteCost(cost.id, token).subscribe(() => {
+        this.costs = this.costs.filter((c) => c.id !== cost.id);
+      });
+      this.costService.getGiftData(token).subscribe((response) => {
+        this.giftData = response;
+      });
+    }
   }
 
   scrollToTop(): void {

@@ -1,7 +1,7 @@
 <mat-card>
-  <mat-card-content class="buy"
-    ><p><span>Buy:</span> {{ cost.buy }}</p></mat-card-content
-  >
+  <mat-card-content class="buy">
+    <p><span>Buy:</span> {{ cost.buy }}</p>
+  </mat-card-content>
   <mat-card-content class="date-cost">
     <p><span>Date:</span> {{ cost.date | date : "short" }}</p>
     <p><span>Cost:</span> {{ cost.cost | currency }}</p>
@@ -10,7 +10,7 @@
     <button mat-icon-button (click)="editCost()">
       <mat-icon class="small-icon edit">edit</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="deleteCost()">
       <mat-icon class="small-icon delete">delete</mat-icon>
     </button>
   </mat-card-actions>

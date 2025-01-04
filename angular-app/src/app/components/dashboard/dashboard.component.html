@@ -55,6 +55,7 @@
         *ngIf="selectedCost?.id !== cost.id"
         [cost]="cost"
         (edit)="updateCost(cost)"
+        (delete)="deleteCost(cost)"
       ></app-cost-card>
       <app-cost-form-update
         *ngIf="selectedCost?.id === cost.id"

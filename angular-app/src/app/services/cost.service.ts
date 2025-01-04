@@ -39,4 +39,9 @@ export class CostService {
     const body = { buy, cost };
     return this.http.put(`${this.apiUrl}/${id}`, body, { headers });
   }
+
+  deleteCost(id: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+  }
 }
