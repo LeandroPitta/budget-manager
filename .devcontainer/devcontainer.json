@@ -1,8 +1,8 @@
 {
   "name": "Ubuntu + Java + Maven + Node + Angular",
   "dockerFile": "Dockerfile",
-  "appPort": [8080, 4200],
-  "forwardPorts": [8080, 4200],
+  "appPort": [8080, 4200, 22],
+  "forwardPorts": [8080, 4200, 22],
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },
