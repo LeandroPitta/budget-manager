@@ -14,14 +14,11 @@ RUN apt-get update && apt-get install -y \
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 
-# SSH configuration (PermitEmptyPasswords enabled)
+# Configure SSH
 RUN mkdir /var/run/sshd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
-    && sed -i 's/^.*PermitEmptyPasswords.*$/PermitEmptyPasswords yes/' /etc/ssh/sshd_config \
-    && passwd -d root  # Remove the root password
-
-EXPOSE 22 8080 4200
+    && echo 'root:1234' | chpasswd  # Set root password to 1234
 
 # Start SSH when the container is run
 CMD ["/usr/sbin/sshd", "-D"]
