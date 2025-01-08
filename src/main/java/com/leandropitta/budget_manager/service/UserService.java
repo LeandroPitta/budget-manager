@@ -1,83 +1,59 @@
 package com.leandropitta.budget_manager.service;
 
-import com.leandropitta.budget_manager.dto.request.AuthRequestDto;
+import com.leandropitta.budget_manager.dto.request.RegisterRequestDto;
 import com.leandropitta.budget_manager.dto.request.UpdateUserRequestDto;
-import com.leandropitta.budget_manager.dto.response.AuthResponseDto;
-import com.leandropitta.budget_manager.entity.User;
-import com.leandropitta.budget_manager.repository.UserRepository;
+import com.leandropitta.budget_manager.dto.response.BackgroundColorsResponseDto;
+import com.leandropitta.budget_manager.dto.response.BackgroundGifsResponseDto;
+import com.leandropitta.budget_manager.dto.response.BudgetGifsResponseDto;
+import com.leandropitta.budget_manager.dto.response.FontFamiliesResponseDto;
+import com.leandropitta.budget_manager.dto.response.TitleColorsResponseDto;
+import com.leandropitta.budget_manager.entity.*;
+import com.leandropitta.budget_manager.repository.*;
 import com.leandropitta.budget_manager.util.SecurityUtil;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BackgroundColorRepository backgroundColorRepository;
+    private final TitleColorRepository titleColorRepository;
+    private final FontFamilyRepository fontFamilyRepository;
+    private final BackgroundGifRepository backgroundGifRepository;
+    private final BudgetGifRepository budgetGifRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
-    private final CustomUserDetailsService userDetailsService;
     private final ModelMapper modelMapper;
 
-    private final String jwtSecret = "yourSecretKey";
-    private final long jwtExpirationDays = 1; // 1 day
-
-    public AuthResponseDto login(AuthRequestDto authRequestDto) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authRequestDto.getUsername(), authRequestDto.getPassword()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String jwt = generateJwtToken(authentication);
-
-        User user = userRepository.findByUsername(authRequestDto.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        AuthResponseDto authResponseDto = modelMapper.map(user, AuthResponseDto.class);
-        authResponseDto.setBackgroundGif(getBackgroundGifUrl(user.getBackgroundGif().getId()));
-        authResponseDto.setBudgetGif(getBudgetGifUrl(user.getBudgetGif()));
-        authResponseDto.setToken(jwt);
-
-        return authResponseDto;
-    }
-
-    private String generateJwtToken(Authentication authentication) {
-        UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
-
-        LocalDate expirationDate = LocalDate.now().plusDays(jwtExpirationDays);
-
-        return Jwts.builder()
-                .setSubject(userPrincipal.getUsername())
-                .setIssuedAt(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))
-                .setExpiration(Date.from(expirationDate.atStartOfDay(ZoneId.systemDefault()).toInstant()))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-                .compact();
-    }
-
-    public void register(AuthRequestDto authRequestDto) {
-        if (userRepository.findByUsername(authRequestDto.getUsername()).isPresent()) {
+    public void register(RegisterRequestDto registerRequestDto) {
+        if (userRepository.findByUsername(registerRequestDto.getUsername()).isPresent()) {
             throw new RuntimeException("Username is already taken");
         }
 
+        BackgroundColor backgroundColor = backgroundColorRepository.findById(registerRequestDto.getBackgroundColorId())
+                .orElseThrow(() -> new RuntimeException("Background color not found"));
+        TitleColor titleColor = titleColorRepository.findById(registerRequestDto.getTitleColorId())
+                .orElseThrow(() -> new RuntimeException("Title color not found"));
+        FontFamily fontFamily = fontFamilyRepository.findById(registerRequestDto.getFontFamilyId())
+                .orElseThrow(() -> new RuntimeException("Font family not found"));
+        BackgroundGif backgroundGif = backgroundGifRepository.findById(registerRequestDto.getBackgroundGifId())
+                .orElseThrow(() -> new RuntimeException("Background gif not found"));
+
         User user = new User();
-        user.setUsername(authRequestDto.getUsername());
-        user.setPassword(passwordEncoder.encode(authRequestDto.getPassword()));
+        user.setUsername(registerRequestDto.getUsername());
+        user.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
+        user.setTitle(registerRequestDto.getTitle());
+        user.setBackgroundColor(backgroundColor);
+        user.setTitleColor(titleColor);
+        user.setFontFamily(fontFamily);
+        user.setBudgetGif(registerRequestDto.getBudgetGif());
+        user.setBackgroundGif(backgroundGif);
+
         userRepository.save(user);
     }
 
@@ -89,23 +65,33 @@ public class UserService {
         userRepository.save(user);
     }
 
-    private String getBackgroundGifUrl(Long gifId) {
-        String gifPath = String.format("assets/gifs/background_gif/%s.gif", gifId);
-        if (getClass().getClassLoader().getResource(gifPath) != null) {
-            String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-            return String.format("%s/assets/gifs/background_gif/%s.gif", baseUrl, gifId);
-        } else {
-            return null;
-        }
+    public BackgroundColorsResponseDto getAllBackgroundColors() {
+        return BackgroundColorsResponseDto.builder()
+                .backgroundColors(new ArrayList<>(backgroundColorRepository.findAll()))
+                .build();
     }
-    
-    private String getBudgetGifUrl(String gifId) {
-        String gifPath = String.format("assets/gifs/budget_gif/%s.gif", gifId);
-        if (getClass().getClassLoader().getResource(gifPath) != null) {
-            String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-            return String.format("%s/assets/gifs/budget_gif/%s.gif", baseUrl, gifId);
-        } else {
-            return gifId;
-        }
-    }    
+
+    public BackgroundGifsResponseDto getAllBackgroundGifs() {
+        return BackgroundGifsResponseDto.builder()
+                .backgroundGifs(new ArrayList<>(backgroundGifRepository.findAll()))
+                .build();
+    }
+
+    public BudgetGifsResponseDto getAllBudgetsGif() {
+        return BudgetGifsResponseDto.builder()
+                .budgetGifs(new ArrayList<>(budgetGifRepository.findAll()))
+                .build();
+    }
+
+    public FontFamiliesResponseDto getAllFontFamilies() {
+        return FontFamiliesResponseDto.builder()
+                .fontFamilies(new ArrayList<>(fontFamilyRepository.findAll()))
+                .build();
+    }
+
+    public TitleColorsResponseDto getAllTitleColors() {
+        return TitleColorsResponseDto.builder()
+                .titleColors(new ArrayList<>(titleColorRepository.findAll()))
+                .build();
+    }
 }
