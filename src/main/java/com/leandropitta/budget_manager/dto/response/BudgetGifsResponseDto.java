@@ -13,5 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BudgetGifsResponseDto {
-    private List<BudgetGif> budgetGifs;
+    private List<BudgetGifResponseDto> budgetGifs;
 }

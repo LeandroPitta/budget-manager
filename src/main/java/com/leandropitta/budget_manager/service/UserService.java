@@ -2,13 +2,10 @@ package com.leandropitta.budget_manager.service;
 
 import com.leandropitta.budget_manager.dto.request.RegisterRequestDto;
 import com.leandropitta.budget_manager.dto.request.UpdateUserRequestDto;
-import com.leandropitta.budget_manager.dto.response.BackgroundColorsResponseDto;
-import com.leandropitta.budget_manager.dto.response.BackgroundGifsResponseDto;
-import com.leandropitta.budget_manager.dto.response.BudgetGifsResponseDto;
-import com.leandropitta.budget_manager.dto.response.FontFamiliesResponseDto;
-import com.leandropitta.budget_manager.dto.response.TitleColorsResponseDto;
+import com.leandropitta.budget_manager.dto.response.*;
 import com.leandropitta.budget_manager.entity.*;
 import com.leandropitta.budget_manager.repository.*;
+import com.leandropitta.budget_manager.util.GifUtil;
 import com.leandropitta.budget_manager.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -72,14 +71,32 @@ public class UserService {
     }
 
     public BackgroundGifsResponseDto getAllBackgroundGifs() {
+        List<BackgroundGif> backgroundGifs = backgroundGifRepository.findAll();
+        List<BackgroundGifResponseDto> backgroundGifResponseDtos = backgroundGifs.stream()
+                .map(backgroundGif -> BackgroundGifResponseDto.builder()
+                        .id(backgroundGif.getId())
+                        .description(backgroundGif.getDescription())
+                        .url(GifUtil.getBackgroundGifUrl(backgroundGif.getId()))
+                        .build())
+                .collect(Collectors.toList());
+
         return BackgroundGifsResponseDto.builder()
-                .backgroundGifs(new ArrayList<>(backgroundGifRepository.findAll()))
+                .backgroundGifs(backgroundGifResponseDtos)
                 .build();
     }
 
     public BudgetGifsResponseDto getAllBudgetsGif() {
+        List<BudgetGif> budgetGifs = budgetGifRepository.findAll();
+        List<BudgetGifResponseDto> budgetGifResponseDtos = budgetGifs.stream()
+                .map(budgetGif -> BudgetGifResponseDto.builder()
+                        .id(budgetGif.getId())
+                        .description(budgetGif.getDescription())
+                        .url(GifUtil.getBudgetGifUrl(budgetGif.getId().toString()))
+                        .build())
+                .collect(Collectors.toList());
+
         return BudgetGifsResponseDto.builder()
-                .budgetGifs(new ArrayList<>(budgetGifRepository.findAll()))
+                .budgetGifs(budgetGifResponseDtos)
                 .build();
     }
 

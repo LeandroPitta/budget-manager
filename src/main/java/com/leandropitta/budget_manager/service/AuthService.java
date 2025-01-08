@@ -4,6 +4,7 @@ import com.leandropitta.budget_manager.dto.request.AuthRequestDto;
 import com.leandropitta.budget_manager.dto.response.AuthResponseDto;
 import com.leandropitta.budget_manager.entity.*;
 import com.leandropitta.budget_manager.repository.*;
+import com.leandropitta.budget_manager.util.GifUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
@@ -43,8 +44,8 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         AuthResponseDto authResponseDto = modelMapper.map(user, AuthResponseDto.class);
-        authResponseDto.setBackgroundGif(getBackgroundGifUrl(user.getBackgroundGif().getId()));
-        authResponseDto.setBudgetGif(getBudgetGifUrl(user.getBudgetGif()));
+        authResponseDto.setBackgroundGif(GifUtil.getBackgroundGifUrl(user.getBackgroundGif().getId()));
+        authResponseDto.setBudgetGif(GifUtil.getBudgetGifUrl(user.getBudgetGif()));
         authResponseDto.setToken(jwt);
 
         return authResponseDto;
@@ -61,25 +62,5 @@ public class AuthService {
                 .setExpiration(Date.from(expirationDate.atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
-    }
-
-    private String getBackgroundGifUrl(Long gifId) {
-        String gifPath = String.format("assets/gifs/background_gif/%s.gif", gifId);
-        if (getClass().getClassLoader().getResource(gifPath) != null) {
-            String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-            return String.format("%s/assets/gifs/background_gif/%s.gif", baseUrl, gifId);
-        } else {
-            return null;
-        }
-    }
-
-    private String getBudgetGifUrl(String gifId) {
-        String gifPath = String.format("assets/gifs/budget_gif/%s.gif", gifId);
-        if (getClass().getClassLoader().getResource(gifPath) != null) {
-            String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-            return String.format("%s/assets/gifs/budget_gif/%s.gif", baseUrl, gifId);
-        } else {
-            return gifId;
-        }
     }
 }

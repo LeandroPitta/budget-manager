@@ -1,17 +1,19 @@
 package com.leandropitta.budget_manager.dto.response;
 
-import com.leandropitta.budget_manager.entity.BackgroundGif;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BackgroundGifsResponseDto {
-    private List<BackgroundGifResponseDto> backgroundGifs;
+public class BudgetGifResponseDto {
+    private Long id;
+    private String description;
+    private String url;
 }
