@@ -6,7 +6,7 @@
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },
-  "postCreateCommand": "service ssh start && node --version && ng version && mvn --version",
+  "postCreateCommand": "node --version && ng version && mvn --version",
   "extensions": [
     "vscjava.vscode-java-pack",
     "ms-azuretools.vscode-docker",

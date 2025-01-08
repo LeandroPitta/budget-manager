@@ -36,4 +36,4 @@ RUN mkdir /var/run/sshd \
     && echo 'root:1234' | chpasswd  # Set root password to 1234
 
 # Start SSH when the container is run
-CMD service ssh start
+CMD service ssh start && tail -f /dev/null
