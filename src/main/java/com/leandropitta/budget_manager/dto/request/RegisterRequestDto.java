@@ -22,21 +22,21 @@ public class RegisterRequestDto {
     @Size(max = 12, message = "Password cannot be more than 12 characters")
     private String password;
 
-    @NotNull
+    @NotNull(message = "Title is required")
     private String title;
 
-    @NotNull
+    @NotNull(message = "Background color ID is required")
     private Long backgroundColorId;
 
-    @NotNull
+    @NotNull(message = "Title color ID is required")
     private Long titleColorId;
 
-    @NotNull
+    @NotNull(message = "Font family ID is required")
     private Long fontFamilyId;
 
-    @NotNull
-    private String budgetGif;
-
-    @NotNull
+    @NotNull(message = "Background gif ID is required")
     private Long backgroundGifId;
+
+    @NotBlank(message = "Budget gif is required")
+    private String budgetGif;
 }

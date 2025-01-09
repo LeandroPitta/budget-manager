@@ -59,8 +59,25 @@ public class UserService {
     public void updateUser(UpdateUserRequestDto updateUserRequestDto) {
         String username = SecurityUtil.getCurrentUsername();
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));        
+
+        BackgroundColor backgroundColor = backgroundColorRepository.findById(updateUserRequestDto.getBackgroundColorId())
+                .orElseThrow(() -> new RuntimeException("Background color not found"));
+        TitleColor titleColor = titleColorRepository.findById(updateUserRequestDto.getTitleColorId())
+                .orElseThrow(() -> new RuntimeException("Title color not found"));
+        FontFamily fontFamily = fontFamilyRepository.findById(updateUserRequestDto.getFontFamilyId())
+                .orElseThrow(() -> new RuntimeException("Font family not found"));
+        BackgroundGif backgroundGif = backgroundGifRepository.findById(updateUserRequestDto.getBackgroundGifId())
+                .orElseThrow(() -> new RuntimeException("Background gif not found"));
+
         user.setPassword(passwordEncoder.encode(updateUserRequestDto.getPassword()));
+        user.setTitle(updateUserRequestDto.getTitle());
+        user.setBackgroundColor(backgroundColor);
+        user.setTitleColor(titleColor);
+        user.setFontFamily(fontFamily);
+        user.setBudgetGif(updateUserRequestDto.getBudgetGif());
+        user.setBackgroundGif(backgroundGif);
+
         userRepository.save(user);
     }
 
