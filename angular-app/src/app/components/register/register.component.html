@@ -23,6 +23,55 @@
         maxlength="12"
       />
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        [(ngModel)]="title"
+        name="title"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Background Color</mat-label>
+      <mat-select [(ngModel)]="backgroundColorId" name="backgroundColorId" required>
+        <mat-option *ngFor="let color of backgroundColors" [value]="color.id">
+          {{ color.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Title Color</mat-label>
+      <mat-select [(ngModel)]="titleColorId" name="titleColorId" required>
+        <mat-option *ngFor="let color of titleColors" [value]="color.id">
+          {{ color.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Font Family</mat-label>
+      <mat-select [(ngModel)]="fontFamilyId" name="fontFamilyId" required>
+        <mat-option *ngFor="let font of fontFamilies" [value]="font.id">
+          {{ font.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Background GIF</mat-label>
+      <mat-select [(ngModel)]="backgroundGifId" name="backgroundGifId" required>
+        <mat-option *ngFor="let gif of backgroundGifs" [value]="gif.id">
+          {{ gif.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Budget GIF</mat-label>
+      <mat-select [(ngModel)]="budgetGifId" name="budgetGif" required>
+        <mat-option *ngFor="let gif of budgetGifs" [value]="gif.id">
+          {{ gif.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Save</button>
     <button mat-raised-button color="warn" type="button" (click)="cancel()">
       Cancel
@@ -31,25 +80,4 @@
       <span>{{ errorMessage }}</span>
     </div>
   </form>
-
-  <div>
-    <h2>Title Colors</h2>
-    <pre>{{ titleColors | json }}</pre>
-  </div>
-  <div>
-    <h2>Background Colors</h2>
-    <pre>{{ backgroundColors | json }}</pre>
-  </div>
-  <div>
-    <h2>Font Families</h2>
-    <pre>{{ fontFamilies | json }}</pre>
-  </div>
-  <div>
-    <h2>Background GIFs</h2>
-    <pre>{{ backgroundGifs | json }}</pre>
-  </div>
-  <div>
-    <h2>Budget GIFs</h2>
-    <pre>{{ budgetGifs | json }}</pre>
-  </div>
 </div>

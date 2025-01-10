@@ -13,6 +13,12 @@ import { UserData } from '../../models/user-data';
 export class RegisterComponent implements OnInit {
   username: string = '';
   password: string = '';
+  title: string = '';
+  backgroundColorId: number = 0;
+  titleColorId: number = 0;
+  fontFamilyId: number = 0;
+  backgroundGifId: number = 0;
+  budgetGifId: string = '';
   errorMessage: string = '';
   titleColors: any[] = [];
   backgroundColors: any[] = [];
@@ -33,23 +39,23 @@ export class RegisterComponent implements OnInit {
 
   loadCustomizationOptions(): void {
     this.userService.getTitleColors().subscribe((data) => {
-      this.titleColors = data;
+      this.titleColors = data.titleColors;
     });
 
     this.userService.getBackgroundColor().subscribe((data) => {
-      this.backgroundColors = data;
+      this.backgroundColors = data.backgroundColors;
     });
 
     this.userService.getFontFamilies().subscribe((data) => {
-      this.fontFamilies = data;
+      this.fontFamilies = data.fontFamilies;
     });
 
     this.userService.getBackgroundGifs().subscribe((data) => {
-      this.backgroundGifs = data;
+      this.backgroundGifs = data.backgroundGifs;
     });
 
     this.userService.getBudgetGifs().subscribe((data) => {
-      this.budgetGifs = data;
+      this.budgetGifs = data.budgetGifs;
     });
   }
 
@@ -57,12 +63,12 @@ export class RegisterComponent implements OnInit {
     const userData: UserData = {
       username: this.username,
       password: this.password,
-      title: '',
-      backgroundColorId: 0,
-      titleColorId: 0,
-      fontFamilyId: 0,
-      backgroundGifId: 0,
-      budgetGif: ''
+      title: this.title,
+      backgroundColorId: this.backgroundColorId,
+      titleColorId: this.titleColorId,
+      fontFamilyId: this.fontFamilyId,
+      backgroundGifId: this.backgroundGifId,
+      budgetGif: this.budgetGifId.toString()
     };
 
     this.userService.register(userData).subscribe(
