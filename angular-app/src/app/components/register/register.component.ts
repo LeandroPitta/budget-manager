@@ -79,6 +79,10 @@ export class RegisterComponent implements OnInit {
     this.budgetGifId = id.toString();
   }
 
+  extractFontName(fontDescription: string): string {
+    return fontDescription.split(',')[0].replace(/['"]/g, '');
+  }
+
   register(): void {
     const userData: UserData = {
       username: this.username,

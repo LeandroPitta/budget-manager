@@ -64,19 +64,22 @@
       centered-slides="true"
       slides-per-view="auto"
       coverflow-effect-rotate="70"
-      coverflow-effect-stretch="0"
+      coverflow-effect-stretch="40"
       coverflow-effect-depth="100"
       coverflow-effect-modifier="1"
       coverflow-effect-slide-shadows="false"
       class="font-gif-swiper"
     >
-      <swiper-slide class="font-gif-swiper-slide" *ngFor="let font of fontFamilies">
+      <swiper-slide
+        class="font-gif-swiper-slide"
+        *ngFor="let font of fontFamilies"
+      >
         <div
           class="font-slide"
-          [style.fontFamily]="font.description"
+          [style.--font-family]="font.description"
           (click)="setFontFamily(font.id)"
         >
-          {{ font.description }}
+          {{ extractFontName(font.description) }}
         </div>
       </swiper-slide>
     </swiper-container>
@@ -95,7 +98,10 @@
       coverflow-effect-slide-shadows="true"
       class="font-gif-swiper"
     >
-      <swiper-slide class="font-gif-swiper-slide" *ngFor="let gif of budgetGifs">
+      <swiper-slide
+        class="font-gif-swiper-slide"
+        *ngFor="let gif of budgetGifs"
+      >
         <div
           class="gif-slide"
           [style.backgroundImage]="'url(' + gif.url + ')'"
@@ -118,7 +124,10 @@
       coverflow-effect-slide-shadows="true"
       class="font-gif-swiper"
     >
-      <swiper-slide class="font-gif-swiper-slide" *ngFor="let gif of backgroundGifs">
+      <swiper-slide
+        class="font-gif-swiper-slide"
+        *ngFor="let gif of backgroundGifs"
+      >
         <div
           class="gif-slide"
           [style.backgroundImage]="'url(' + gif.url + ')'"
