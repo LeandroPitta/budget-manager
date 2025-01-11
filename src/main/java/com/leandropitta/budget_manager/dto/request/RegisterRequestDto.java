@@ -1,5 +1,7 @@
 package com.leandropitta.budget_manager.dto.request;
 
+import java.math.BigDecimal;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,6 +26,9 @@ public class RegisterRequestDto {
 
     @NotNull(message = "Title is required")
     private String title;
+
+    @NotNull(message = "Budget value is required")
+    private BigDecimal budgetValue;
 
     @NotNull(message = "Background color ID is required")
     private Long backgroundColorId;

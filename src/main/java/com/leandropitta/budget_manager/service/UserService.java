@@ -47,6 +47,7 @@ public class UserService {
         user.setUsername(registerRequestDto.getUsername());
         user.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
         user.setTitle(registerRequestDto.getTitle());
+        user.setBudgetValue(registerRequestDto.getBudgetValue());
         user.setBackgroundColor(backgroundColor);
         user.setTitleColor(titleColor);
         user.setFontFamily(fontFamily);
@@ -72,6 +73,7 @@ public class UserService {
 
         user.setPassword(passwordEncoder.encode(updateUserRequestDto.getPassword()));
         user.setTitle(updateUserRequestDto.getTitle());
+        user.setBudgetValue(updateUserRequestDto.getBudgetValue());
         user.setBackgroundColor(backgroundColor);
         user.setTitleColor(titleColor);
         user.setFontFamily(fontFamily);
