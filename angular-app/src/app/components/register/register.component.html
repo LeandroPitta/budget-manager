@@ -29,35 +29,38 @@
     </mat-form-field>
     <!-- Background Color -->
     <label>Background Color</label>
-    <swiper-container effect="cards" grab-cursor="true" class="color-swiper">
+    <swiper-container
+      #backgroundColorSwiper
+      effect="cards"
+      grab-cursor="true"
+      class="color-swiper"
+    >
       <swiper-slide
         class="color-swiper-slide"
         *ngFor="let color of backgroundColors"
       >
-        <div
-          class="color-slide"
-          [style.background]="color.description"
-          (click)="setBackgroundColor(color.id)"
-        ></div>
+        <div class="color-slide" [style.background]="color.description"></div>
       </swiper-slide>
     </swiper-container>
     <!-- Title Color -->
     <label>Title Color</label>
-    <swiper-container effect="cards" grab-cursor="true" class="color-swiper">
+    <swiper-container
+      #titleColorSwiper
+      effect="cards"
+      grab-cursor="true"
+      class="color-swiper"
+    >
       <swiper-slide
         class="color-swiper-slide"
         *ngFor="let color of titleColors"
       >
-        <div
-          class="color-slide"
-          [style.background]="color.description"
-          (click)="setTitleColor(color.id)"
-        ></div>
+        <div class="color-slide" [style.background]="color.description"></div>
       </swiper-slide>
     </swiper-container>
     <!-- Font Family -->
     <label>Font Family</label>
     <swiper-container
+      #fontFamilySwiper
       pagination="true"
       effect="coverflow"
       grab-cursor="true"
@@ -74,11 +77,7 @@
         class="font-gif-swiper-slide"
         *ngFor="let font of fontFamilies"
       >
-        <div
-          class="font-slide"
-          [style.--font-family]="font.description"
-          (click)="setFontFamily(font.id)"
-        >
+        <div class="font-slide" [style.--font-family]="font.description">
           {{ extractFontName(font.description) }}
         </div>
       </swiper-slide>
@@ -86,6 +85,7 @@
     <!-- Budget GIF -->
     <label>Budget GIF</label>
     <swiper-container
+      #budgetGifSwiper
       pagination="true"
       effect="coverflow"
       grab-cursor="true"
@@ -105,13 +105,13 @@
         <div
           class="gif-slide"
           [style.backgroundImage]="'url(' + gif.url + ')'"
-          (click)="setBudgetGif(gif.id)"
         ></div>
       </swiper-slide>
     </swiper-container>
     <!-- Background GIF -->
     <label>Background GIF</label>
     <swiper-container
+      #backgroundGifSwiper
       pagination="true"
       effect="coverflow"
       grab-cursor="true"
@@ -131,7 +131,6 @@
         <div
           class="gif-slide"
           [style.backgroundImage]="'url(' + gif.url + ')'"
-          (click)="setBackgroundGif(gif.id)"
         ></div>
       </swiper-slide>
     </swiper-container>
