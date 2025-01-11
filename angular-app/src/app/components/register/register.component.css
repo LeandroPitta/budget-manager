@@ -1,12 +1,12 @@
+:host h1 h2 label input mat-form-field {
+  font-family: "Roboto", sans-serif !important;
+}
+
 .register-container {
   background-color: #e0e0e0;
   width: 100vw;
   height: 100vh;
   overflow: auto;
-}
-
-:host * {
-  font-family: "Roboto", sans-serif !important;
 }
 
 .register-form {
@@ -16,29 +16,34 @@
   align-items: center;
 }
 
-.error-message {
-  color: red;
-  margin-top: 16px;
+.register-container mat-form-field {
+  margin-bottom: -14px;
 }
 
-.register-container mat-form-field {
-  display: block;
-  margin-bottom: -14px;
+.close-button {
+  opacity: 0.4;
+  margin-left: auto;
 }
 
 h1 {
   text-align: center;
-  font-size: 30px;
-  margin-bottom: 18px;
+  font-size: 28px;
+  font-weight: bolder;
 }
 
-button {
-  margin-top: 4px;
+h2 {
+  margin: 14px 0 8px 0;
+  font-style: italic;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .color-swiper {
   padding-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   width: 150px;
   height: 100px;
 }
@@ -57,7 +62,7 @@ button {
 
 .font-gif-swiper {
   width: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .font-gif-swiper-slide {
@@ -75,6 +80,7 @@ button {
   align-items: center;
   font-family: var(--font-family) !important;
   font-size: 18px;
+  margin-top: -20px;
 }
 
 .gif-slide {
@@ -82,4 +88,14 @@ button {
   height: 100%;
   background-size: cover;
   background-position: center;
+}
+
+.error-message {
+  color: red;
+  margin-top: 16px;
+}
+
+button {
+  margin-top: 4px;
+  width: 180px;
 }
