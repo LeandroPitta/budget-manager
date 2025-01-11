@@ -25,53 +25,65 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Title</mat-label>
-      <input
-        matInput
-        [(ngModel)]="title"
-        name="title"
-        required
-      />
+      <input matInput [(ngModel)]="title" name="title" required />
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Background Color</mat-label>
-      <mat-select [(ngModel)]="backgroundColorId" name="backgroundColorId" required>
-        <mat-option *ngFor="let color of backgroundColors" [value]="color.id">
-          {{ color.description }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Title Color</mat-label>
-      <mat-select [(ngModel)]="titleColorId" name="titleColorId" required>
-        <mat-option *ngFor="let color of titleColors" [value]="color.id">
-          {{ color.description }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Font Family</mat-label>
-      <mat-select [(ngModel)]="fontFamilyId" name="fontFamilyId" required>
-        <mat-option *ngFor="let font of fontFamilies" [value]="font.id">
+    <!-- Background Color -->
+    <label>Background Color</label>
+    <swiper-container [slidesPerView]="1" navigation="true" pagination="true" class="carousel">
+      <swiper-slide *ngFor="let color of backgroundColors">
+        <div
+          class="color-slide"
+          [style.background]="color.description"
+          (click)="setBackgroundColor(color.id)"
+        ></div>
+      </swiper-slide>
+    </swiper-container>
+    <!-- Title Color -->
+    <label>Title Color</label>
+    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
+      <swiper-slide *ngFor="let color of titleColors">
+        <div
+          class="color-slide"
+          [style.background]="color.description"
+          (click)="setTitleColor(color.id)"
+        ></div>
+      </swiper-slide>
+    </swiper-container>
+    <!-- Font Family -->
+    <label>Font Family</label>
+    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
+      <swiper-slide *ngFor="let font of fontFamilies">
+        <div
+          class="font-slide"
+          [style.fontFamily]="font.description"
+          (click)="setFontFamily(font.id)"
+        >
           {{ font.description }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Background GIF</mat-label>
-      <mat-select [(ngModel)]="backgroundGifId" name="backgroundGifId" required>
-        <mat-option *ngFor="let gif of backgroundGifs" [value]="gif.id">
-          {{ gif.description }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Budget GIF</mat-label>
-      <mat-select [(ngModel)]="budgetGifId" name="budgetGif" required>
-        <mat-option *ngFor="let gif of budgetGifs" [value]="gif.id">
-          {{ gif.description }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <!-- Budget GIF -->
+    <label>Budget GIF</label>
+    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
+      <swiper-slide *ngFor="let gif of budgetGifs">
+        <div
+          class="gif-slide"
+          [style.backgroundImage]="'url(' + gif.url + ')'"
+          (click)="setBudgetGif(gif.id)"
+        ></div>
+      </swiper-slide>
+    </swiper-container>
+    <!-- Background GIF -->
+    <label>Background GIF</label>
+    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
+      <swiper-slide *ngFor="let gif of backgroundGifs">
+        <div
+          class="gif-slide"
+          [style.backgroundImage]="'url(' + gif.url + ')'"
+          (click)="setBackgroundGif(gif.id)"
+        ></div>
+      </swiper-slide>
+    </swiper-container>
     <button mat-raised-button color="primary" type="submit">Save</button>
     <button mat-raised-button color="warn" type="button" (click)="cancel()">
       Cancel

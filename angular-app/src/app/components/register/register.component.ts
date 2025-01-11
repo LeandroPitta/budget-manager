@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private navigationService: NavigationService,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadCustomizationOptions();
@@ -59,6 +59,26 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  setBackgroundColor(id: number): void {
+    this.backgroundColorId = id;
+  }
+
+  setTitleColor(id: number): void {
+    this.titleColorId = id;
+  }
+
+  setFontFamily(id: number): void {
+    this.fontFamilyId = id;
+  }
+
+  setBackgroundGif(id: number): void {
+    this.backgroundGifId = id;
+  }
+
+  setBudgetGif(id: number): void {
+    this.budgetGifId = id.toString();
+  }
+
   register(): void {
     const userData: UserData = {
       username: this.username,
@@ -68,7 +88,7 @@ export class RegisterComponent implements OnInit {
       titleColorId: this.titleColorId,
       fontFamilyId: this.fontFamilyId,
       backgroundGifId: this.backgroundGifId,
-      budgetGif: this.budgetGifId.toString()
+      budgetGif: this.budgetGifId.toString(),
     };
 
     this.userService.register(userData).subscribe(
