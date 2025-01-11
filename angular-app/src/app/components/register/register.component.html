@@ -29,8 +29,11 @@
     </mat-form-field>
     <!-- Background Color -->
     <label>Background Color</label>
-    <swiper-container [slidesPerView]="1" navigation="true" pagination="true" class="carousel">
-      <swiper-slide *ngFor="let color of backgroundColors">
+    <swiper-container effect="cards" grab-cursor="true" class="color-swiper">
+      <swiper-slide
+        class="color-swiper-slide"
+        *ngFor="let color of backgroundColors"
+      >
         <div
           class="color-slide"
           [style.background]="color.description"
@@ -40,8 +43,11 @@
     </swiper-container>
     <!-- Title Color -->
     <label>Title Color</label>
-    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
-      <swiper-slide *ngFor="let color of titleColors">
+    <swiper-container effect="cards" grab-cursor="true" class="color-swiper">
+      <swiper-slide
+        class="color-swiper-slide"
+        *ngFor="let color of titleColors"
+      >
         <div
           class="color-slide"
           [style.background]="color.description"
@@ -51,8 +57,20 @@
     </swiper-container>
     <!-- Font Family -->
     <label>Font Family</label>
-    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
-      <swiper-slide *ngFor="let font of fontFamilies">
+    <swiper-container
+      pagination="true"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      slides-per-view="auto"
+      coverflow-effect-rotate="70"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="100"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="false"
+      class="font-gif-swiper"
+    >
+      <swiper-slide class="font-gif-swiper-slide" *ngFor="let font of fontFamilies">
         <div
           class="font-slide"
           [style.fontFamily]="font.description"
@@ -64,8 +82,20 @@
     </swiper-container>
     <!-- Budget GIF -->
     <label>Budget GIF</label>
-    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
-      <swiper-slide *ngFor="let gif of budgetGifs">
+    <swiper-container
+      pagination="true"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      slides-per-view="auto"
+      coverflow-effect-rotate="70"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="100"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="true"
+      class="font-gif-swiper"
+    >
+      <swiper-slide class="font-gif-swiper-slide" *ngFor="let gif of budgetGifs">
         <div
           class="gif-slide"
           [style.backgroundImage]="'url(' + gif.url + ')'"
@@ -75,8 +105,20 @@
     </swiper-container>
     <!-- Background GIF -->
     <label>Background GIF</label>
-    <swiper-container [slidesPerView]="1" [spaceBetween]="10" class="carousel">
-      <swiper-slide *ngFor="let gif of backgroundGifs">
+    <swiper-container
+      pagination="true"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      slides-per-view="auto"
+      coverflow-effect-rotate="70"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="100"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="true"
+      class="font-gif-swiper"
+    >
+      <swiper-slide class="font-gif-swiper-slide" *ngFor="let gif of backgroundGifs">
         <div
           class="gif-slide"
           [style.backgroundImage]="'url(' + gif.url + ')'"
