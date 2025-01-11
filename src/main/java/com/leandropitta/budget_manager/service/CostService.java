@@ -51,14 +51,14 @@ public class CostService {
                 .map(Cost::getCost)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        BigDecimal gift = new BigDecimal("1500.00");
-        BigDecimal available = gift.subtract(totalCost);
+        BigDecimal budgetValue = user.getBudgetValue();
+        BigDecimal available = budgetValue.subtract(totalCost);
 
         return GiftResponseDto.builder()
-                .gift(gift)
-                .spent(totalCost)
-                .available(available)
-                .build();
+                        .gift(budgetValue)
+                        .spent(totalCost)
+                        .available(available)
+                        .build();
     }
 
     @Transactional

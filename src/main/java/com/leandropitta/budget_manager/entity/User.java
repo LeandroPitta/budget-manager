@@ -1,5 +1,7 @@
 package com.leandropitta.budget_manager.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,6 +21,9 @@ public class User {
     private String password;
 
     private String title;
+
+    @Column(name = "budget_value", nullable = false)
+    private BigDecimal budgetValue;
 
     @ManyToOne
     @JoinColumn(name = "background_color", nullable = false)

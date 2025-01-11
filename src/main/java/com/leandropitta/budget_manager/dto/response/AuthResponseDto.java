@@ -1,5 +1,7 @@
 package com.leandropitta.budget_manager.dto.response;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +16,7 @@ public class AuthResponseDto {
     private String username;
     private String token;
     private String title;
+    private BigDecimal budgetValue;
     private String backgroundColor;
     private String titleColor;
     private String fontFamily;
