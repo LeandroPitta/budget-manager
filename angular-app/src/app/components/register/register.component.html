@@ -31,6 +31,18 @@
       <mat-label>Title</mat-label>
       <input matInput [(ngModel)]="title" name="title" required />
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Budget Value</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="budgetValue"
+        name="budgetValue"
+        currencyMask
+        [options]="{ prefix: '$', thousands: ',', decimal: '.', precision: 2 }"
+        required
+      />
+    </mat-form-field>
     <!-- Background Color -->
     <label>Background Color</label>
     <swiper-container
