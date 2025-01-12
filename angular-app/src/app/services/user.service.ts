@@ -17,6 +17,10 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
 
+  update(userData: UserData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/update`, userData);
+  }
+
   getTitleColors(): Observable<any> {
     return this.http.get(`${this.apiUrl}/title-colors`);
   }

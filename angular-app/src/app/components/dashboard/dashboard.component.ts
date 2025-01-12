@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openSettings() {
-    // Lógica para abrir as configurações
+    this.navigationService.navigateTo('update');
   }
 
   logout() {

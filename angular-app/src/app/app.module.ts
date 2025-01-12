@@ -25,6 +25,7 @@ import { CostCardComponent } from './components/cost-card/cost-card.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CostFormUpdateComponent } from './components/cost-form-update/cost-form-update.component';
+import { UpdateComponent } from './components/update/update.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CostFormUpdateComponent } from './components/cost-form-update/cost-form
     LoginComponent,
     RegisterComponent,
     CostFormUpdateComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,
