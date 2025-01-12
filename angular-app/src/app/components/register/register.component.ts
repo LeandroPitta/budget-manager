@@ -9,7 +9,7 @@ import { LoginComponent } from '../login/login.component';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [LoginComponent], // Adicione o LoginComponent aos providers
+  providers: [LoginComponent],
 })
 export class RegisterComponent implements OnInit {
   @ViewChild('backgroundColorSwiper') backgroundColorSwiper!: ElementRef;

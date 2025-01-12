@@ -9,7 +9,7 @@ import { LoginComponent } from '../login/login.component';
   selector: 'app-update',
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.css'],
-  providers: [LoginComponent], // Adicione o LoginComponent aos providers
+  providers: [LoginComponent],
 })
 export class UpdateComponent implements OnInit {
   @ViewChild('backgroundColorSwiper') backgroundColorSwiper!: ElementRef;
@@ -43,6 +43,7 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCustomizationOptions();
+    this.loadFormDataFromLocalStorage();
   }
 
   loadCustomizationOptions(): void {
@@ -65,6 +66,29 @@ export class UpdateComponent implements OnInit {
     this.userService.getBudgetGifs().subscribe((data) => {
       this.budgetGifs = data.budgetGifs;
     });
+  }
+
+  loadFormDataFromLocalStorage(): void {
+    this.username = localStorage.getItem('username') || '';
+    this.title = localStorage.getItem('title') || '';
+    this.budgetValue = parseFloat(localStorage.getItem('budgetValue') || '0');
+    this.backgroundColorId = parseInt(
+      localStorage.getItem('backgroundColorId') || '0',
+      10
+    );
+    this.titleColorId = parseInt(
+      localStorage.getItem('titleColorId') || '0',
+      10
+    );
+    this.fontFamilyId = parseInt(
+      localStorage.getItem('fontFamilyId') || '0',
+      10
+    );
+    this.backgroundGifId = parseInt(
+      localStorage.getItem('backgroundGifId') || '0',
+      10
+    );
+    this.budgetGifId = localStorage.getItem('budgetGifId') || '';
   }
 
   extractFontName(fontDescription: string): string {
@@ -117,6 +141,6 @@ export class UpdateComponent implements OnInit {
   }
 
   cancel(): void {
-    this.navigationService.navigateTo('login');
+    this.navigationService.navigateTo('dashboard');
   }
 }

@@ -25,8 +25,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('username', this.username);
         localStorage.setItem('backgroundColor', response.backgroundColor);
         localStorage.setItem('title', response.title);
+        localStorage.setItem('budgetValue', response.budgetValue);
         localStorage.setItem('titleColor', response.titleColor);
         localStorage.setItem('fontFamily', response.fontFamily);
         localStorage.setItem('budgetGif', response.budgetGif);
