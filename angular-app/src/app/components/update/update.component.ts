@@ -16,7 +16,7 @@ export class UpdateComponent implements OnInit {
   @ViewChild('titleColorSwiper') titleColorSwiper!: ElementRef;
   @ViewChild('fontFamilySwiper') fontFamilySwiper!: ElementRef;
   @ViewChild('backgroundGifSwiper') backgroundGifSwiper!: ElementRef;
-  @ViewChild('budgetGifSwiper') budgetGifSwiper!: ElementRef;
+  @ViewChild('budgetGifSwiper') budgetGifSwiper?: ElementRef;
 
   username: string = '';
   password: string = '';
@@ -28,6 +28,8 @@ export class UpdateComponent implements OnInit {
   backgroundGifId: number = 0;
   budgetGifId: string = '';
   errorMessage: string = '';
+  budgetGifOption: string = 'gif';
+  budgetGifText: string = '';
   titleColors: any[] = [];
   backgroundColors: any[] = [];
   fontFamilies: any[] = [];
@@ -84,7 +86,7 @@ export class UpdateComponent implements OnInit {
     const titleColorSwiper = this.titleColorSwiper.nativeElement.swiper;
     const fontFamilySwiper = this.fontFamilySwiper.nativeElement.swiper;
     const backgroundGifSwiper = this.backgroundGifSwiper.nativeElement.swiper;
-    const budgetGifSwiper = this.budgetGifSwiper.nativeElement.swiper;
+    const budgetGifSwiper = this.budgetGifSwiper?.nativeElement?.swiper;
 
     this.backgroundColorId =
       this.backgroundColors[backgroundColorSwiper.activeIndex].id;
@@ -92,8 +94,12 @@ export class UpdateComponent implements OnInit {
     this.fontFamilyId = this.fontFamilies[fontFamilySwiper.activeIndex].id;
     this.backgroundGifId =
       this.backgroundGifs[backgroundGifSwiper.activeIndex].id;
-    this.budgetGifId =
-      this.budgetGifs[budgetGifSwiper.activeIndex].id.toString();
+    if (this.budgetGifOption === 'text') {
+      this.budgetGifId = this.budgetGifText;
+    } else {
+      this.budgetGifId =
+        this.budgetGifs[budgetGifSwiper.activeIndex].id.toString();
+    }
 
     const userDataUpdate: UserDataUpdate = {
       password: this.password,

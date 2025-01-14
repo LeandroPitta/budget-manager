@@ -6,12 +6,7 @@
     <h1>Update User</h1>
     <mat-form-field>
       <mat-label>Username</mat-label>
-      <input
-        matInput
-        [(ngModel)]="username"
-        name="username"
-        disabled
-      />
+      <input matInput [(ngModel)]="username" name="username" disabled />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
@@ -98,30 +93,49 @@
     </swiper-container>
     <!-- Budget GIF -->
     <label>Budget GIF</label>
-    <swiper-container
-      #budgetGifSwiper
-      pagination="true"
-      effect="coverflow"
-      grab-cursor="true"
-      centered-slides="true"
-      slides-per-view="auto"
-      coverflow-effect-rotate="70"
-      coverflow-effect-stretch="0"
-      coverflow-effect-depth="100"
-      coverflow-effect-modifier="1"
-      coverflow-effect-slide-shadows="true"
-      class="font-gif-swiper"
-    >
-      <swiper-slide
-        class="font-gif-swiper-slide"
-        *ngFor="let gif of budgetGifs"
+    <mat-radio-group [(ngModel)]="budgetGifOption" name="budgetGifOption">
+      <mat-radio-button value="text">Input Text</mat-radio-button>
+      <mat-radio-button value="gif">Select GIF</mat-radio-button>
+    </mat-radio-group>
+
+    <div *ngIf="budgetGifOption === 'text'">
+      <mat-form-field>
+        <mat-label>Budget GIF Text</mat-label>
+        <input
+          matInput
+          [(ngModel)]="budgetGifText"
+          name="budgetGifText"
+          maxlength="14"
+        />
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="budgetGifOption === 'gif'">
+      <swiper-container
+        #budgetGifSwiper
+        pagination="true"
+        effect="coverflow"
+        grab-cursor="true"
+        centered-slides="true"
+        slides-per-view="auto"
+        coverflow-effect-rotate="70"
+        coverflow-effect-stretch="0"
+        coverflow-effect-depth="100"
+        coverflow-effect-modifier="1"
+        coverflow-effect-slide-shadows="true"
+        class="font-gif-swiper"
       >
-        <div
-          class="gif-slide"
-          [style.backgroundImage]="'url(' + gif.url + ')'"
-        ></div>
-      </swiper-slide>
-    </swiper-container>
+        <swiper-slide
+          class="font-gif-swiper-slide"
+          *ngFor="let gif of budgetGifs"
+        >
+          <div
+            class="gif-slide"
+            [style.backgroundImage]="'url(' + gif.url + ')'"
+          ></div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
     <!-- Background GIF -->
     <label>Background GIF</label>
     <swiper-container
