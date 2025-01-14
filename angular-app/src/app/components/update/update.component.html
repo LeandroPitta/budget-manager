@@ -1,5 +1,5 @@
-<div class="register-container">
-  <form (ngSubmit)="update()" class="register-form">
+<div class="update-container">
+  <form (ngSubmit)="update()" class="update-form">
     <button mat-icon-button class="close-button" (click)="cancel()">
       <mat-icon>close</mat-icon>
     </button>
@@ -10,9 +10,7 @@
         matInput
         [(ngModel)]="username"
         name="username"
-        required
-        minlength="3"
-        maxlength="20"
+        disabled
       />
     </mat-form-field>
     <mat-form-field>

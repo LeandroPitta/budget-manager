@@ -38,7 +38,7 @@ public class AppConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://livia.leandropitta.com.br", "https://15.228.14.114", "http://localhost:4200")
+                .allowedOrigins("https://budget.leandropitta.com.br", "https://livia.leandropitta.com.br", "https://15.228.14.114", "http://localhost:4200")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);

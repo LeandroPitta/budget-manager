@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserData } from '../models/user-data';
+import { UserDataUpdate } from '../models/user-data-update';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +18,10 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
 
-  update(userData: UserData): Observable<any> {
-    return this.http.post(`${this.apiUrl}/update`, userData);
+  update(userDataUpdate: UserDataUpdate): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(`${this.apiUrl}/update`, userDataUpdate, { headers });
   }
 
   getTitleColors(): Observable<any> {

@@ -1,17 +1,17 @@
-.register-container {
+.update-container {
   width: 100vw;
   height: 100vh;
   overflow: auto;
 }
 
-.register-form {
+.update-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.register-container mat-form-field {
+.update-container mat-form-field {
   margin-bottom: -14px;
 }
 

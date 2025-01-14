@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NavigationService } from '../../core/navigation.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../services/user.service';
-import { UserData } from '../../models/user-data';
+import { UserDataUpdate } from '../../models/user-data-update';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -72,23 +72,6 @@ export class UpdateComponent implements OnInit {
     this.username = localStorage.getItem('username') || '';
     this.title = localStorage.getItem('title') || '';
     this.budgetValue = parseFloat(localStorage.getItem('budgetValue') || '0');
-    this.backgroundColorId = parseInt(
-      localStorage.getItem('backgroundColorId') || '0',
-      10
-    );
-    this.titleColorId = parseInt(
-      localStorage.getItem('titleColorId') || '0',
-      10
-    );
-    this.fontFamilyId = parseInt(
-      localStorage.getItem('fontFamilyId') || '0',
-      10
-    );
-    this.backgroundGifId = parseInt(
-      localStorage.getItem('backgroundGifId') || '0',
-      10
-    );
-    this.budgetGifId = localStorage.getItem('budgetGifId') || '';
   }
 
   extractFontName(fontDescription: string): string {
@@ -112,8 +95,7 @@ export class UpdateComponent implements OnInit {
     this.budgetGifId =
       this.budgetGifs[budgetGifSwiper.activeIndex].id.toString();
 
-    const userData: UserData = {
-      username: this.username,
+    const userDataUpdate: UserDataUpdate = {
       password: this.password,
       title: this.title,
       budgetValue: this.budgetValue,
@@ -124,12 +106,12 @@ export class UpdateComponent implements OnInit {
       budgetGif: this.budgetGifId,
     };
 
-    this.userService.update(userData).subscribe(
+    this.userService.update(userDataUpdate).subscribe(
       (response) => {
         this.loginComponent.username = this.username;
         this.loginComponent.password = this.password;
         this.loginComponent.login();
-        this.snackBar.open('User successfully registered', 'Close', {
+        this.snackBar.open('User successfully updated', 'Close', {
           duration: 3000,
           verticalPosition: 'top',
         });
