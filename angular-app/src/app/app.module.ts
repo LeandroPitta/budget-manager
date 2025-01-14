@@ -12,7 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 // register Swiper custom elements
@@ -52,7 +52,7 @@ import { UpdateComponent } from './components/update/update.component';
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-    MatSelectModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

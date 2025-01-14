@@ -19,7 +19,7 @@ public class UpdateUserRequestDto {
     @Size(max = 12, message = "Password cannot be more than 12 characters")
     private String password;
 
-   
+    @Size(max = 22, message = "Title cannot be more than 22 characters")
     private String title;
 
     private BigDecimal budgetValue;
@@ -32,5 +32,6 @@ public class UpdateUserRequestDto {
 
     private Long backgroundGifId;
 
+    @Size(max = 14, message = "Title cannot be more than 14 characters")
     private String budgetGif;
 }

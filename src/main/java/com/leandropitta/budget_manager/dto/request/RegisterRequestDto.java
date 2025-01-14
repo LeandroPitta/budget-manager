@@ -25,6 +25,7 @@ public class RegisterRequestDto {
     private String password;
 
     @NotNull(message = "Title is required")
+    @Size(max = 22, message = "Title cannot be more than 22 characters")
     private String title;
 
     @NotNull(message = "Budget value is required")
@@ -43,5 +44,6 @@ public class RegisterRequestDto {
     private Long backgroundGifId;
 
     @NotBlank(message = "Budget gif is required")
+    @Size(max = 14, message = "Budget gif cannot be more than 14 characters")
     private String budgetGif;
 }
