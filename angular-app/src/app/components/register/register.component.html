@@ -29,7 +29,7 @@
     <h2>Dashboard Customization</h2>
     <mat-form-field>
       <mat-label>Title</mat-label>
-      <input matInput [(ngModel)]="title" name="title" required />
+      <input matInput [(ngModel)]="title" name="title" maxlength="22" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Budget Value</mat-label>
@@ -43,7 +43,6 @@
         required
       />
     </mat-form-field>
-    <!-- Background Color -->
     <label>Background Color</label>
     <swiper-container
       #backgroundColorSwiper
@@ -58,7 +57,6 @@
         <div class="color-slide" [style.background]="color.description"></div>
       </swiper-slide>
     </swiper-container>
-    <!-- Title Color -->
     <label>Title Color</label>
     <swiper-container
       #titleColorSwiper
@@ -73,7 +71,6 @@
         <div class="color-slide" [style.background]="color.description"></div>
       </swiper-slide>
     </swiper-container>
-    <!-- Font Family -->
     <label>Font Family</label>
     <swiper-container
       #fontFamilySwiper
@@ -98,7 +95,6 @@
         </div>
       </swiper-slide>
     </swiper-container>
-    <!-- Budget GIF -->
     <label>Budget GIF</label>
     <mat-radio-group
       [(ngModel)]="budgetGifOption"
@@ -110,7 +106,7 @@
 
     <div *ngIf="budgetGifOption === 'text'">
       <mat-form-field>
-        <mat-label>Budget GIF Text</mat-label>
+        <mat-label>Budget Text</mat-label>
         <input
           matInput
           [(ngModel)]="budgetGifText"
@@ -146,7 +142,6 @@
         </swiper-slide>
       </swiper-container>
     </div>
-    <!-- Background GIF -->
     <label>Background GIF</label>
     <swiper-container
       #backgroundGifSwiper

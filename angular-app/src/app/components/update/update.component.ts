@@ -46,7 +46,7 @@ export class UpdateComponent implements OnInit {
   ngOnInit(): void {
     this.loadCustomizationOptions();
     this.loadFormDataFromLocalStorage();
-     this.setBudgetGifOption();
+    this.setBudgetGifOption();
   }
 
   loadCustomizationOptions(): void {
@@ -105,7 +105,11 @@ export class UpdateComponent implements OnInit {
 
   loadFormDataFromLocalStorage(): void {
     this.username = localStorage.getItem('username') || '';
-    this.title = localStorage.getItem('title') || '';
+
+    const storedTitle = localStorage.getItem('title');
+    this.title =
+      storedTitle === 'null' || storedTitle === null ? '' : storedTitle;
+
     this.budgetValue = parseFloat(localStorage.getItem('budgetValue') || '0');
   }
 
