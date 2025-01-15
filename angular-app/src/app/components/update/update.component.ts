@@ -46,6 +46,7 @@ export class UpdateComponent implements OnInit {
   ngOnInit(): void {
     this.loadCustomizationOptions();
     this.loadFormDataFromLocalStorage();
+     this.setBudgetGifOption();
   }
 
   loadCustomizationOptions(): void {
@@ -91,7 +92,8 @@ export class UpdateComponent implements OnInit {
   ): any[] {
     if (localStorage) {
       const index = options.findIndex(
-        (option) => option.description === localStorage || option.url === localStorage
+        (option) =>
+          option.description === localStorage || option.url === localStorage
       );
       if (index > -1) {
         const [selectedOptionObj] = options.splice(index, 1);
@@ -109,6 +111,18 @@ export class UpdateComponent implements OnInit {
 
   extractFontName(fontDescription: string): string {
     return fontDescription.split(',')[0].replace(/['"]/g, '');
+  }
+
+  private setBudgetGifOption(): void {
+    const budgetGif = localStorage.getItem('budgetGif');
+    if (budgetGif) {
+      if (budgetGif.startsWith('http')) {
+        this.budgetGifOption = 'gif';
+      } else {
+        this.budgetGifOption = 'text';
+        this.budgetGifText = budgetGif;
+      }
+    }
   }
 
   update(): void {
