@@ -50,24 +50,55 @@ export class UpdateComponent implements OnInit {
 
   loadCustomizationOptions(): void {
     this.userService.getTitleColors().subscribe((data) => {
-      this.titleColors = data.titleColors;
+      this.titleColors = this.setFirstOptionFromLocalStorage(
+        data.titleColors,
+        localStorage.getItem('titleColor') || 'titleColor'
+      );
     });
 
     this.userService.getBackgroundColor().subscribe((data) => {
-      this.backgroundColors = data.backgroundColors;
+      this.backgroundColors = this.setFirstOptionFromLocalStorage(
+        data.backgroundColors,
+        localStorage.getItem('backgroundColor') || 'backgroundColor'
+      );
     });
 
     this.userService.getFontFamilies().subscribe((data) => {
-      this.fontFamilies = data.fontFamilies;
+      this.fontFamilies = this.setFirstOptionFromLocalStorage(
+        data.fontFamilies,
+        localStorage.getItem('fontFamily') || 'fontFamily'
+      );
     });
 
     this.userService.getBackgroundGifs().subscribe((data) => {
-      this.backgroundGifs = data.backgroundGifs;
+      this.backgroundGifs = this.setFirstOptionFromLocalStorage(
+        data.backgroundGifs,
+        localStorage.getItem('backgroundGif') || 'backgroundGif'
+      );
     });
 
     this.userService.getBudgetGifs().subscribe((data) => {
-      this.budgetGifs = data.budgetGifs;
+      this.budgetGifs = this.setFirstOptionFromLocalStorage(
+        data.budgetGifs,
+        localStorage.getItem('budgetGif') || 'budgetGif'
+      );
     });
+  }
+
+  private setFirstOptionFromLocalStorage(
+    options: any[],
+    localStorage: string
+  ): any[] {
+    if (localStorage) {
+      const index = options.findIndex(
+        (option) => option.description === localStorage || option.url === localStorage
+      );
+      if (index > -1) {
+        const [selectedOptionObj] = options.splice(index, 1);
+        options.unshift(selectedOptionObj);
+      }
+    }
+    return options;
   }
 
   loadFormDataFromLocalStorage(): void {
