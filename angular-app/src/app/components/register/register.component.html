@@ -96,10 +96,7 @@
       </swiper-slide>
     </swiper-container>
     <label>Budget GIF</label>
-    <mat-radio-group
-      [(ngModel)]="budgetGifOption"
-      name="budgetGifOption"
-    >
+    <mat-radio-group [(ngModel)]="budgetGifOption" name="budgetGifOption">
       <mat-radio-button value="text">Input Text</mat-radio-button>
       <mat-radio-button value="gif">Select GIF</mat-radio-button>
     </mat-radio-group>
@@ -115,7 +112,6 @@
         />
       </mat-form-field>
     </div>
-
     <div *ngIf="budgetGifOption === 'gif'">
       <swiper-container
         #budgetGifSwiper

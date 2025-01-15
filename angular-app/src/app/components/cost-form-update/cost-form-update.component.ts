@@ -5,7 +5,7 @@ import { CostService } from '../../services/cost.service';
 @Component({
   selector: 'app-cost-form-update',
   templateUrl: './cost-form-update.component.html',
-  styleUrls: ['./cost-form-update.component.css']
+  styleUrls: ['./cost-form-update.component.css'],
 })
 export class CostFormUpdateComponent {
   @Input() available: number = 0;
@@ -17,7 +17,7 @@ export class CostFormUpdateComponent {
   constructor(
     private costService: CostService,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   onSave(): void {
     if (this.cost.buy.length < 3) {
@@ -38,9 +38,11 @@ export class CostFormUpdateComponent {
       return;
     }
 
-    this.costService.updateCost(this.cost.id, this.cost.buy, this.cost.cost).subscribe(() => {
-      this.save.emit(this.cost);
-    });
+    this.costService
+      .updateCost(this.cost.id, this.cost.buy, this.cost.cost)
+      .subscribe(() => {
+        this.save.emit(this.cost);
+      });
   }
 
   onCancel(): void {

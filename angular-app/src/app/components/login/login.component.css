@@ -4,11 +4,11 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
 }
 
 :host * {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
 }
 
 .login-form {

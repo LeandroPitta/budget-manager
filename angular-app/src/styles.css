@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-    --background-gradient: ;
-    --font-color-title: ;
-    --font-family: ;
+  --background-gradient: ;
+  --font-color-title: ;
+  --font-family: ;
 }
 
 html,
 body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    background: var(--background-gradient);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background: var(--background-gradient);
 }
 
 h1,
@@ -26,5 +26,5 @@ input,
 textarea,
 text,
 label {
-    font-family: var(--font-family) !important;
+  font-family: var(--font-family) !important;
 }

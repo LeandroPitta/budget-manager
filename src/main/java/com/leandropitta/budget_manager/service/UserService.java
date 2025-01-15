@@ -8,7 +8,6 @@ import com.leandropitta.budget_manager.repository.*;
 import com.leandropitta.budget_manager.util.GifUtil;
 import com.leandropitta.budget_manager.util.SecurityUtil;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,6 @@ public class UserService {
     private final BackgroundGifRepository backgroundGifRepository;
     private final BudgetGifRepository budgetGifRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ModelMapper modelMapper;
 
     public void register(RegisterRequestDto registerRequestDto) {
         if (userRepository.findByUsername(registerRequestDto.getUsername()).isPresent()) {
@@ -60,7 +58,7 @@ public class UserService {
     public void updateUser(UpdateUserRequestDto updateUserRequestDto) {
         String username = SecurityUtil.getCurrentUsername();
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));        
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         BackgroundColor backgroundColor = backgroundColorRepository.findById(updateUserRequestDto.getBackgroundColorId())
                 .orElseThrow(() -> new RuntimeException("Background color not found"));

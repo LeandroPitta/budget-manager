@@ -29,12 +29,6 @@ public class AppConfiguration implements WebMvcConfigurer {
         return modelMapper;
     }
 
-    // Coment this in development
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(originCheckInterceptor);
-//    }
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private navigationService: NavigationService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     localStorage.clear();
