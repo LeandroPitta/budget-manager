@@ -10,6 +10,7 @@ import com.leandropitta.budget_manager.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class UserService {
     private final BudgetGifRepository budgetGifRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional
     public void register(RegisterRequestDto registerRequestDto) {
         if (userRepository.findByUsername(registerRequestDto.getUsername()).isPresent()) {
             throw new RuntimeException("Username is already taken");
@@ -55,6 +57,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
     public void updateUser(UpdateUserRequestDto updateUserRequestDto) {
         String username = SecurityUtil.getCurrentUsername();
         User user = userRepository.findByUsername(username)
@@ -81,12 +84,14 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional(readOnly = true)
     public BackgroundColorsResponseDto getAllBackgroundColors() {
         return BackgroundColorsResponseDto.builder()
                 .backgroundColors(new ArrayList<>(backgroundColorRepository.findAll()))
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public BackgroundGifsResponseDto getAllBackgroundGifs() {
         List<BackgroundGif> backgroundGifs = backgroundGifRepository.findAll();
         List<BackgroundGifResponseDto> backgroundGifResponseDtos = backgroundGifs.stream()
@@ -102,6 +107,7 @@ public class UserService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public BudgetGifsResponseDto getAllBudgetsGif() {
         List<BudgetGif> budgetGifs = budgetGifRepository.findAll();
         List<BudgetGifResponseDto> budgetGifResponseDtos = budgetGifs.stream()
@@ -117,12 +123,14 @@ public class UserService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public FontFamiliesResponseDto getAllFontFamilies() {
         return FontFamiliesResponseDto.builder()
                 .fontFamilies(new ArrayList<>(fontFamilyRepository.findAll()))
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public TitleColorsResponseDto getAllTitleColors() {
         return TitleColorsResponseDto.builder()
                 .titleColors(new ArrayList<>(titleColorRepository.findAll()))
